@@ -1,4 +1,4 @@
-version: '3.9'
+# version: '3.9'
 
 
 services:
@@ -13,9 +13,17 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
+      - PGUSER=postgres
 
     volumes:
       - ./postgres:/var/lib/postgresql/data 
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s 
 
   pgadmin:
     image: dpage/pgadmin4
@@ -62,4 +70,5 @@ services:
       - ./backend:/app/backend
 
     depends_on:
-      - db
+      db:
+        condition: service_healthy
