@@ -17,6 +17,8 @@ services:
 
     volumes:
       - ./postgres:/var/lib/postgresql/data 
+    
+    
 
     healthcheck:
       test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
@@ -39,36 +41,42 @@ services:
     volumes:
        - ./pgadmin:/var/lib/pgadmin
 
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+  # frontend:
+  #   build:
+  #     context: ./backend/frontend
+  #     dockerfile: Dockerfile
 
-    ports:
-      - '3000:3000'
+  #   ports:
+  #     - '3000:3000'
 
-    volumes:
-      - ./frontend:/app/frontend
+  #   volumes:
+  #     - ./backend/frontend:/app/frontend
 
-    depends_on:
-      - backend
+  #   depends_on:
+  #     - backend
 
   backend: 
     build: 
       context: ./backend
       dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py collectstatic &&
+             python manage.py runserver 0.0.0.0:8000"
 
     environment:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_USER=postgres
       - POSTGRES_DB=postgres
+      - DB_HOST=db
 
     ports:
       - '8000:8000'
 
     volumes:
       - ./backend:/app/backend
-
     depends_on:
       db:
         condition: service_healthy
+    
