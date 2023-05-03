@@ -1,0 +1,63 @@
+
+services:
+  
+  db:
+    image: postgres
+    container_name: postgres
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - PGUSER=postgres
+
+    volumes:
+      - ./postgres:/var/lib/postgresql/data 
+    
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "db_prod"]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s 
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: unless-stopped  
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
+      PGADMIN_DEFAULT_PASSWORD: "admin"
+    ports:
+      - "8200:80"
+    depends_on:
+      - db
+    volumes:
+       - ./pgadmin:/var/lib/pgadmin
+
+  backend: 
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: >
+      sh -c "python manage.py makemigrations &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - DB_HOST=db
+
+    ports:
+      - '8000:8000'
+
+    # volumes:
+    #   - ./backend:/app/backend
+    depends_on:
+      db:
+        condition: service_healthy
+    
