@@ -15,4 +15,5 @@ class Stock(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE,)
     shop = models.ForeignKey(Shop, on_delete=models.CASCADE,)
     price= models.DecimalField(max_digits=10, decimal_places=2)
-    date = models.DateField() 
+    date = models.DateField()
+    url = models.TextField()
