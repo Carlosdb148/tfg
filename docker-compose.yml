@@ -58,6 +58,13 @@ services:
     ports:
       - "8000:8000"
 
+    volumes:
+      - .:/app/
+
+    depends_on:
+      db:
+        condition: service_healthy
+
   backend2:
     build:
       context: .
@@ -79,8 +86,9 @@ services:
     ports:
       - "8001:8001"
 
-    # volumes:
-    #   - ./backend:/app/backend
+    volumes:
+      - .:/app/
+
     depends_on:
       db:
         condition: service_healthy
