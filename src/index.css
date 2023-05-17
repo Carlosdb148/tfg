@@ -5,9 +5,118 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f4f4;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.imgHeader{
+  background-image: url(./assets/img/pexels-pixabay-4158.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 600px;
+}
+
+.cuadroAzul{
+  width: 400px;
+  height: 200px;
+  background-color: #009fff;
+  position: relative;
+  top: 350px;
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.navi{
+  width: 100%;
+  height: 90px;
+  background-color: #009fff;
+}
+
+.footer{
+  width: 100%;
+  height: 400px;
+  background-color: #009fff;
+}
+
+.frase{
+  color: #009fff;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 100px;
+  opacity: 60%;
+  font-style: italic;
+}
+
+.fraseProduct{
+  color: #009fff;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 150px;
+  font-weight: 600;
+}
+
+.flex{
+  display: flex;
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+.aviso, .privacidad, .cookies{
+  flex: 1;
+  text-align: center;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: white;
+}
+
+.aviso:hover{
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.privacidad:hover{
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.cookies:hover{
+  color: whitesmoke;
+  cursor: pointer;
+}
+
+.separador{
+  border-bottom: 1px solid white;
+  width: 70%;
+  margin: 0 auto;
+  height: 50px;
+}
+
+.navHome, .navProd{
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: white;
+}
+
+.avisoLegal{
+  text-align: center;
+  font-size: 2rem;
+}
+
+.titulos{
+  margin-left: 50px;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.parrafo{
+  margin-left: 50px;
+  width: 70%;
+  margin: 0 auto;
 }

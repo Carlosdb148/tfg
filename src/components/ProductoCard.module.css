@@ -1,0 +1,40 @@
+.productoCard{
+    color: red;
+    list-style: none;
+    font-size: 1.3rem;
+}
+
+.imagen{
+    background-image: url(../assets/img/iphone12red.webp);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 175px;
+    min-width: 100%;
+}
+
+.tarjeta{
+    width: 230px;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.nombre{
+    min-width: 100%;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.tarjeta:hover{
+    background-color: rgb(245, 245, 245);
+    transform: scale(1.01);
+    transition: transform .5s ease;
+}
+
+.tarjeta:not(:hover){
+    transform: scale(1);
+    transition: all .5s ease;
+}
