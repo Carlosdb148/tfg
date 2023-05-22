@@ -17,7 +17,7 @@ class Protegida(APIView):
 
 
 urlpatterns = [
-    path(r'createProduct', views.add_product, name='add-product'),
+    path(r'createProduct', views.AddProduct.as_view(), name='add-product'),
     path(r'getProducts', views.get_products, name='get_products'),
     path(r'login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path(r'token/refresh', TokenRefreshView.as_view(), name='token_refresh'),

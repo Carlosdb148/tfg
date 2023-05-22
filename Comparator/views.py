@@ -7,20 +7,23 @@ from rest_framework.response import Response
 from rest_framework import generics, permissions, mixins
 from .serializers import RegisterSerializer, UserSerializer
 from django.contrib.auth.models import User
+from rest_framework.permissions import  IsAdminUser, IsAuthenticated
+
  
-@api_view(['POST'])
-def add_product(request):
-    item = ProductSerializer(data=request.data)
+class AddProduct(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated, IsAdminUser]
+    def post(self, request):
+        item = ProductSerializer(data=request.data)
+        
+        # validating for already existing data
+        if Product.objects.filter(**request.data).exists():
+            raise serializers.ValidationError('This data already exists')
     
-    # validating for already existing data
-    if Product.objects.filter(**request.data).exists():
-        raise serializers.ValidationError('This data already exists')
- 
-    if item.is_valid():
-        item.save()
-        return Response('Product saved correctly')
-    else:
-        return Response('An error ocurred while saving the product', status=status.HTTP_404_NOT_FOUND)
+        if item.is_valid():
+            item.save()
+            return Response('Product saved correctly')
+        else:
+            return Response('An error ocurred while saving the product', status=status.HTTP_404_NOT_FOUND)
     
 @api_view(['GET'])
 def get_products(self):
