@@ -7,7 +7,10 @@ export function ComparadorGrid() {
   return (
   <div>
         <div className="imgHeader">
-          <div className="cuadroAzul"></div>
+          <div className="cuadroAzul">
+            <h2 className="nombreEmpresa">BIENVENIDO A TRAZIEM TECHNOLOGY</h2>
+            <div className="logotipo2"></div>
+          </div>
         </div>
         <div className="frase">Los mejores productos tecnológicos<br/>a precios más que lógicos</div>
         <div>

@@ -1,6 +1,9 @@
 .productoCard{
-    color: red;
     list-style: none;
+}
+
+.productoCard a{
+    color: red;
     font-size: 1.3rem;
 }
 

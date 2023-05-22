@@ -1,0 +1,115 @@
+.detailsContainer{
+    width: 700px;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.imagen{
+    background-image: url(../assets/img/iphone12red.webp);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 175px;
+    min-width: 50%;
+    max-width: 50%;
+}
+
+.nombre{
+    color: red;
+    font-size: 1.3rem;
+}
+
+.descripcion{
+    font-size: 1rem;
+}
+
+.precioM, .precioA, .precioP, .precioW{
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: red;
+    box-shadow: 0px 0px 8px rgba(0,0,0,.1);
+}
+
+.Mtitulo, .Mprecio{
+    flex: 1;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.Mprecio{
+    color: #009fff !important;
+}
+
+.Murl{
+    width: 120px;
+    border: 1px solid #009fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.Murl a{
+    color: black;
+    font-size: 1.4rem;
+}
+
+.Murl:hover{
+    background-color: #009fff;
+    transition: all .5s ease;
+}
+
+.Murl:hover a{
+    color: white;
+    transition: all .5s ease;
+}
+
+.precioW{
+    margin-bottom: 100px;
+}
+
+@media screen and (max-width: 890px){
+    .detailsContainer{
+        width: 500px;
+    }
+}
+
+@media screen and (max-width: 620px){
+    .detailsContainer{
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 490px){
+    .detailsContainer{
+        flex-wrap: wrap;
+        text-align: center;
+        width: 80%;
+    }
+
+    .precioM, .precioA, .precioP, .precioW{
+        width: 300px;
+        height: 70px;
+    }
+}
+
+@media screen and (max-width: 370px){
+    .precioM, .precioA, .precioP, .precioW{
+        width: 80%;
+    }
+}
