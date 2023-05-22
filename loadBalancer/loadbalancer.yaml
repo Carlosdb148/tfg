@@ -1,0 +1,20 @@
+# hosts:
+#   - host: www.scrap.com
+#     servers:
+#       - backend1:8000
+#       - backend2:8001
+# paths:
+#   - path: /scrap
+#     servers:
+#       - backend1:8000
+#       - backend2:8001
+hosts:
+  - host: www.scrap.com
+    servers:
+      - localhost:8000
+      - localhost:8001
+paths:
+  - path: /scrap
+    servers:
+      - localhost:8000
+      - localhost:8001

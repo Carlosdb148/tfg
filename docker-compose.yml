@@ -1,4 +1,14 @@
 services:
+  loadbalander:
+        build:
+          context: ./loadBalancer
+          dockerfile: Dockerfile
+        ports:
+          - "9099:5000"
+        networks:
+          loadbalancer_network:
+            aliases:
+              - load-balancer
   db:
     user: root
     image: postgres
@@ -21,6 +31,8 @@ services:
       timeout: 60s
       retries: 5
       start_period: 80s
+    networks:
+        loadbalancer_network:
 
   pgadmin:
     user: root
@@ -36,6 +48,8 @@ services:
       - db
     volumes:
       - ./pgadmin:/var/lib/pgadmin
+    networks:
+        loadbalancer_network:
 
   backend:
     build:
@@ -65,6 +79,11 @@ services:
       db:
         condition: service_healthy
 
+    networks:
+        loadbalancer_network:
+          aliases:
+            - backend1
+
   backend2:
     build:
       context: .
@@ -90,3 +109,16 @@ services:
     depends_on:
       db:
         condition: service_healthy
+
+    networks:
+        loadbalancer_network:
+          aliases:
+            - backend2
+
+
+networks:
+  loadbalancer_network:
+    name:  load_balancer_net
+    driver: bridge
+    ipam:
+      driver: default
