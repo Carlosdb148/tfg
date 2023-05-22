@@ -293,6 +293,10 @@ a{
   .nombreEmpresa{
     font-style: italic;
   }
+
+  .logotipo{
+    margin-left: 50px;
+  }
 }
 
 @media screen and (max-width: 920px) {
@@ -310,5 +314,21 @@ a{
   .navRegistro{
     margin-right: 30px;
     font-size: 1rem;
+  }
+
+  .logotipo3{
+    position: relative;
+    left: -20px;
+  }
+
+  .logotipo{
+    margin-left: 20px;
+  }
+}
+
+@media screen and (max-width: 580px){
+  .logotipo3{
+    width: 155px;
+    height: 140px;
   }
 }
