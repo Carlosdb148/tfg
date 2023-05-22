@@ -4,8 +4,13 @@
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
         "descripcion": "Móvil de alta gama con la mejor cámara"
     },
     {
@@ -13,17 +18,27 @@
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
-        "descripcion": "Móvil de alta gama con la mejor cámara"
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
+        "descripcion": "El procesador que da vida al iPhone 12 es el Apple A14 Bionic, chip que estrenó el nuevo iPad Air. Se trata del primer procesador para moviles con tecnologia de 5 nanómetros. Dicho procesador cuenta con 2 núcleos de alto rendimiento y cuatro núcleos dedicados a tareas de baja demanda, para tratar de mantener equilibrio entre potencia y autonomía. Este procesador es compatible con conectividad 5G tanto SA como NSA."
     },
     {
         "id": 3,
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
         "descripcion": "Móvil de alta gama con la mejor cámara"
     },
     {
@@ -31,8 +46,13 @@
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
         "descripcion": "Móvil de alta gama con la mejor cámara"
     },
     {
@@ -40,8 +60,13 @@
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
         "descripcion": "Móvil de alta gama con la mejor cámara"
     },
     {
@@ -49,8 +74,13 @@
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
         "descripcion": "Móvil de alta gama con la mejor cámara"
     },
     {
@@ -58,8 +88,13 @@
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
         "descripcion": "Móvil de alta gama con la mejor cámara"
     },
     {
@@ -67,8 +102,13 @@
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
         "descripcion": "Móvil de alta gama con la mejor cámara"
     },
     {
@@ -76,8 +116,13 @@
         "foto": "./src/assets/img/iphone12red.webp",
         "nombre": "iphone 12",
         "precioMediaMarkt": "699",
+        "urlMediaMarkt":"",
         "precioAmazon": "599",
-        "precioCorteIngles": "649",
+        "urlAmazon":"",
+        "precioPhoneHouse": "649",
+        "urlPhoneHouse":"",
+        "precioWorten": "629",
+        "urlWorten":"",
         "descripcion": "Móvil de alta gama con la mejor cámara"
     }
 ]
