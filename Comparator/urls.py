@@ -22,5 +22,6 @@ urlpatterns = [
     path(r'login', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path(r'token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
     path(r'register', views.RegisterApi.as_view(), name='register'),
-    path(r'protegida', Protegida.as_view(), name='protegida')
+    path(r'protegida', Protegida.as_view(), name='protegida'),
+    path(r'price/<int:id>', views.GetPrice.as_view(), name='get_price')
 ]
