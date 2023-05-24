@@ -105,6 +105,7 @@ code {
   width: 70%;
   margin: 0 auto;
   height: 50px;
+  margin-top: 40px;
 }
 
 .navHome{
@@ -242,8 +243,8 @@ a{
 .logotipo3{
   margin: 0 auto;
   margin-top: 50px;
-  width: 220px;
-  height: 200px;
+  width: 175px;
+  height: 160px;
   background-image: url("./assets/img/logo__.png");
   background-position: center center;
   background-repeat: no-repeat;
@@ -255,6 +256,108 @@ a{
   color: whitesmoke;
   font-size: 1.1rem;
   text-align: center;
+}
+
+.formRegistro{
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+  background-image: url(./assets/img/02.jpg);
+  background-position: top center;
+  background-repeat: no-repeat;
+}
+
+.formLogin{
+  margin: 0 auto;
+  margin-top: 100px;
+  width: 50%;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+  background-image: url(./assets/img/02.jpg);
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.registroNombre{
+  margin-top: 40px !important;
+}
+
+.registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContraseña{
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 80%;
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid black;
+  color: black;
+  font-size: 1.4rem;
+}
+
+.loginUsuario{
+  margin-top: 40px !important;
+}
+
+.loginUsuario, .loginContraseña{
+  margin: 0 auto;
+  margin-bottom: 40px;
+  width: 80%;
+  height: 40px;
+  border-radius: 3px;
+  border: 1px solid black;
+  color: black;
+  font-size: 1.4rem;
+}
+
+.tituloRegistro{
+  margin: 0 auto;
+  margin-top: 30px;
+  font-weight: 400;
+  font-size: 1.7rem;
+  color: white;
+}
+
+.registroNombre::placeholder, .registroApellido::placeholder, .registroEmail::placeholder, .registroUsuario::placeholder, .registroContraseña::placeholder{
+  font-size: 1.4rem;
+}
+
+.registroBtn{
+  margin: 0 auto;
+  width: 90px;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 3px;
+  color: black;
+  text-align: center;
+  line-height: 40px;
+  cursor: pointer;
+  margin-bottom: 40px;
+  background-color: white;
+}
+
+.registroBtn:hover{
+  background-color: black;
+  color: white;
+  transition: all .5s ease;
+}
+
+@media screen and (max-width: 1000px) {
+  .formRegistro{
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .navRegistro{
+    margin-right: 50px;
+  }
 }
 
 @media screen and (max-width: 800px) {
@@ -269,9 +372,20 @@ a{
   }
 }
 
+@media screen and (max-width: 580px){
+  .logotipo3{
+    width: 155px;
+    height: 140px;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .frase{
     font-size: 1.5rem;
+  }
+
+  .tituloRegistro{
+    font-size: 1.4rem;
   }
 }
 
@@ -297,11 +411,9 @@ a{
   .logotipo{
     margin-left: 50px;
   }
-}
 
-@media screen and (max-width: 920px) {
-  .navRegistro{
-    margin-right: 50px;
+  .formRegistro{
+    width: 95%;
   }
 }
 
@@ -326,9 +438,12 @@ a{
   }
 }
 
-@media screen and (max-width: 580px){
-  .logotipo3{
-    width: 155px;
-    height: 140px;
+@media screen and (max-width: 370px) {
+  .tituloRegistro{
+    font-size: 1.2rem;
+  }
+
+  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContraseña{
+    width: 90%;
   }
 }

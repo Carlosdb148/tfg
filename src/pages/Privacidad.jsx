@@ -2,7 +2,7 @@ export function Privacidad(){
     return (
         <div>
             <h2 className="avisoLegal">POLÍTICA DE PRIVACIDAD DEL SITIO WEB
-www.traziem.com
+<br/>www.traziem.com
 </h2>
 <h4 className="titulos">I. POLÍTICA DE PRIVACIDAD Y PROTECCIÓN DE DATOS</h4>
 <p className="parrafo">Respetando lo establecido en la legislación vigente, Traziem (en adelante, también Sitio Web) se compromete a adoptar las medidas técnicas y organizativas necesarias, según el nivel de seguridad adecuado al riesgo de los datos recogidos.
