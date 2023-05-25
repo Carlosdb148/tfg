@@ -1,9 +1,19 @@
-import productos from "./comparador.json";
 import { ProductoCard } from "./ProductoCard";
 import styles from "./ComparadorGrid.module.css";
+import { useEffect, useState } from "react";
+
 
 export function ComparadorGrid() {
-  console.log(productos);
+
+  const [productos, setProductos] = useState([]);
+  
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/getProducts").then(result => result.json()).then(data => {
+      setProductos(data);
+    });
+  }, []);
+
   return (
   <div>
         <div className="imgHeader">

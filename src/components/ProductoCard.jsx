@@ -7,7 +7,7 @@ export function ProductoCard({ producto }) {
       <Link to={"/producto/" + producto.id}>
       <div className={styles.tarjeta}>
         <div className={styles.imagen}/>
-        <div className={styles.nombre}>{producto.nombre}</div>
+        <div className={styles.nombre}>{producto.name}</div>
       </div>
       </Link>
   </li>
