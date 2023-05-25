@@ -25,17 +25,17 @@ class AddProduct(generics.GenericAPIView):
         else:
             return Response('An error ocurred while saving the product', status=status.HTTP_404_NOT_FOUND)
     
-@api_view(['GET'])
-def get_products(self):
-    # checking for the parameters from the URL
-    items = Product.objects.all()
-    serializer = ProductSerializer(items, many=True)
+class GetProducts(generics.GenericAPIView):
+    def get(self, request):
+        # checking for the parameters from the URL
+        items = Product.objects.all()
+        serializer = ProductSerializer(items, many=True)
 
-    # if there is something in items else raise error
-    if items:
-        return Response(serializer.data)
-    else:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        # if there is something in items else raise error
+        if items:
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
     
 
 #Register API
