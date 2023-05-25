@@ -2,7 +2,7 @@
 
 from pathlib import Path
 import os
-# import environ
+from datetime import timedelta
 
 # env = environ.Env()
 # environ.Env.read_env()
@@ -160,6 +160,11 @@ REST_FRAMEWORK = {
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+}
 
 
 #  # django-ckeditor will not work with S3 through django-storages without this line in settings.py
