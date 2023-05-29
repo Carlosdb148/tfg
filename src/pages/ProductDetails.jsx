@@ -1,8 +1,52 @@
-import producto from "./producto.json";
+// import producto from "./producto.json";
+// import styles from "./ProductDetails.module.css";
+// import { useParams } from "react-router";
+// import { useEffect, useState } from "react";
+
+// export function ProductDetails(){
+//     const { productoId } = useParams();
+//     const token = localStorage.getItem('token');
+//     console.log(token);
+//     const [producto, setProducto] = useState(null);
+//     useEffect(() => {
+//         fetch("http://localhost:8000/api/price/" + productoId, {
+//             headers:{
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import styles from "./ProductDetails.module.css";
 
-export function ProductDetails(){
-    return <div>
+export function ProductDetails() {
+  const { productoId } = useParams();
+  const token = localStorage.getItem("token");
+  const [producto, setProducto] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // Estado de carga
+
+  useEffect(() => {
+    if (token) {
+      fetch("http://localhost:8000/api/price/" + productoId, {
+        headers: {
+          Authorization: "Bearer " + token,
+          "Content-Type": "application/json;charset=utf-8",
+        },
+      })
+        .then((result) => result.json())
+        .then((data) => {
+          console.log(data.data);
+          setProducto(data.data);
+          setIsLoading(false); // Cambia el estado de carga a falso
+        });
+    }
+  }, [productoId, token]);
+
+  if (isLoading) {
+    return <div><p className="inicioMensaje">Necesitas iniciar sesión para ver información sobre los productos</p></div>; // Muestra un mensaje de carga mientras se obtiene el token y los datos del producto
+  }
+
+  if (!producto) {
+    return null;
+  }
+
+  return <div>
         {/* <img src={producto.foto} alt=""/> */}
         <div className={styles.detailsContainer}>
             <div className={styles.imagen}/>
@@ -13,23 +57,23 @@ export function ProductDetails(){
         </div>
         <div className={styles.precioM}>
             <div className={styles.Mtitulo}>Media Markt</div>
-            <div className={styles.Mprecio}>{producto.precioMediaMarkt}€</div>
-            <div className={styles.Murl}><a href={producto.urlMediaMarkt}>Comprar</a></div>
+            <div className={styles.Mprecio}>{producto.precio.MediaMarkt}€</div>
+            <div className={styles.Murl}><a href={producto.urls.MediaMarkt}>Comprar</a></div>
         </div>
         <div className={styles.precioA}>
             <div className={styles.Mtitulo}>Amazon</div>
-            <div className={styles.Mprecio}>{producto.precioAmazon}€</div>
-            <div className={styles.Murl}><a href={producto.urlAmazon}>Comprar</a></div>
+            <div className={styles.Mprecio}>{producto.precio.Amazon}€</div>
+            <div className={styles.Murl}><a href={producto.urls.Amazon}>Comprar</a></div>
         </div>
         <div className={styles.precioP}>
             <div className={styles.Mtitulo}>Phone House</div>
-            <div className={styles.Mprecio}>{producto.precioPhoneHouse}€</div>
-            <div className={styles.Murl}><a href={producto.urlPhoneHouse}>Comprar</a></div>
+            <div className={styles.Mprecio}>{producto.precio.PhoneHouse}€</div>
+            <div className={styles.Murl}><a href={producto.urls.PhoneHouse}>Comprar</a></div>
         </div>
         <div className={styles.precioW}>
             <div className={styles.Mtitulo}>Worten</div>
-            <div className={styles.Mprecio}>{producto.precioWorten}€</div>
-            <div className={styles.Murl}><a href={producto.urlWorten}>Comprar</a></div>
+            <div className={styles.Mprecio}>{producto.precio.Worten}€</div>
+            <div className={styles.Murl}><a href={producto.urls.Worten}>Comprar</a></div>
         </div>
     </div>;
 }

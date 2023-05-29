@@ -15,8 +15,7 @@ export function Login() {
 
     axios.post('http://localhost:8000/api/login', formData)
       .then(response => {
-        const token = response.data.token;
-        // Aquí puedes manejar el token recibido, por ejemplo, almacenarlo en el almacenamiento local (localStorage)
+        const token = response.data.access;
         localStorage.setItem('token', token);
         console.log('Inicio de sesión exitoso');
       })

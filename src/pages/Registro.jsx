@@ -17,7 +17,6 @@ export function Registro() {
     axios.post('http://localhost:8000/api/register', formData)
       .then(response => {
         console.log(response.data);
-        // Si el registro fue exitoso, realizar el inicio de sesión
         const loginData = {
           username: usuario.value,
           password: contraseña.value
@@ -25,8 +24,7 @@ export function Registro() {
         return axios.post('http://localhost:8000/api/login', loginData);
       })
       .then(response => {
-        const token = response.data.token;
-        // Aquí puedes manejar el token recibido, por ejemplo, almacenarlo en el almacenamiento local (localStorage)
+        const token = response.data.access;
         localStorage.setItem('token', token);
         console.log('Inicio de sesión exitoso');
       })

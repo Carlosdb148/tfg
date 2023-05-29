@@ -22,6 +22,16 @@ code {
   height: 600px;
 }
 
+.inicioMensaje{
+  margin: 0 auto;
+  text-align: center;
+  font-size: 2rem;
+  color: #009fff;
+  font-weight: 600;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
 .cuadroAzul{
   width: 400px;
   height: 200px;
