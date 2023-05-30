@@ -305,11 +305,11 @@ a{
     width: 40% !important;
   }
 
-  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContraseña{
+  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia{
     height: 60px !important;
   }
 
-  .loginUsuario, .loginContraseña{
+  .loginUsuario, .loginContrasenia{
     height: 60px !important;
   }
 }
@@ -366,7 +366,7 @@ a{
   color: white;
 }
 
-.registroNombre::placeholder, .registroApellido::placeholder, .registroEmail::placeholder, .registroUsuario::placeholder, .registroContraseña::placeholder{
+.registroNombre::placeholder, .registroApellido::placeholder, .registroEmail::placeholder, .registroUsuario::placeholder, .registroContrasenia::placeholder{
   font-size: 1.4rem;
 }
 
@@ -485,7 +485,7 @@ a{
     font-size: 1.2rem;
   }
 
-  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContraseña{
+  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia{
     width: 90%;
   }
 }

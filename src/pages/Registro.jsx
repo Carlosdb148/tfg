@@ -41,7 +41,7 @@ export function Registro() {
         <input type="text" className="registroApellido" placeholder="Apellidos" name="apellidos" />
         <input type="email" className="registroEmail" placeholder="Email" name="email" />
         <input type="text" className="registroUsuario" placeholder="Usuario" name="usuario" />
-        <input type="text" className="registroContraseña" placeholder="Contraseña" name="contraseña" />
+        <input type="text" className="registroContrasenia" placeholder="Contraseña" name="contraseña" />
         <input type="submit" className="registroBtn" />
       </form>
     </div>

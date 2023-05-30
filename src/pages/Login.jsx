@@ -29,7 +29,7 @@ export function Login() {
       <form className="formLogin" onSubmit={handleSubmit}>
         <p className="tituloRegistro">Logueate en Traziem Technology</p>
         <input type="text" className="loginUsuario" placeholder="Usuario" value={usuario} onChange={(e) => setUsuario(e.target.value)} />
-        <input type="password" className="loginContraseña" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} />
+        <input type="password" className="loginContrasenia" placeholder="Contraseña" value={contraseña} onChange={(e) => setContraseña(e.target.value)} />
         <input type="submit" className="registroBtn" />
       </form>
     </div>
