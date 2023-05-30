@@ -6,6 +6,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f4f4f4;
+  overflow-x: hidden;
 }
 
 code {
@@ -20,16 +21,6 @@ code {
   background-size: cover;
   width: 100%;
   height: 600px;
-}
-
-.inicioMensaje{
-  margin: 0 auto;
-  text-align: center;
-  font-size: 2rem;
-  color: #009fff;
-  font-weight: 600;
-  margin-top: 100px;
-  margin-bottom: 100px;
 }
 
 .cuadroAzul{
@@ -61,6 +52,19 @@ code {
   width: 100%;
   height: 400px;
   background-color: #009fff;
+}
+
+@media screen and (min-width: 1700px) {
+  .footer{
+    transform: scale(1.2);
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  .footer{
+    margin-top: 150px;
+    transform: scale(1.3);
+  }
 }
 
 .frase{
@@ -280,6 +284,24 @@ a{
   background-image: url(./assets/img/02.jpg);
   background-position: top center;
   background-repeat: no-repeat;
+}
+
+@media screen and (min-width: 1800px) {
+  .formRegistro{
+    width: 40% !important;
+  }
+
+  .formLogin{
+    width: 40% !important;
+  }
+
+  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContraseña{
+    height: 60px !important;
+  }
+
+  .loginUsuario, .loginContraseña{
+    height: 60px !important;
+  }
 }
 
 .formLogin{
