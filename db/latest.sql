@@ -563,6 +563,10 @@ COPY public."Comparator_product" (id, name, description, image) FROM stdin;
 --
 
 COPY public."Comparator_shop" (id, name, logo) FROM stdin;
+1	Amazon	images/Captura_de_pantalla_2023-03-15_a_las_12.14.05_DSHajMQ.png
+2	MediaMarkt	images/Captura_de_pantalla_2023-03-15_a_las_12.14.05_QTHKoJO.png
+3	PhoneHouse	images/Captura_de_pantalla_2023-03-15_a_las_12.14.05_xsWt6sS.png
+4	Worten	images/Captura_de_pantalla_2023-03-15_a_las_12.14.05_EWapffL.png
 \.
 
 
@@ -571,6 +575,7 @@ COPY public."Comparator_shop" (id, name, logo) FROM stdin;
 --
 
 COPY public."Comparator_stock" (id, price, date, url, product_id, shop_id) FROM stdin;
+1	543.00	2023-05-30	bfr	1	1
 \.
 
 
@@ -639,7 +644,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$320000$4Jq3dPkJLkr2GqwBbGivoX$ygOXfCu6R+35YXLrF3mtNfiyVtDW69YVmue0iIScoRc=	2023-05-24 16:25:56.684223+00	t	admin			admin@admin.com	t	t	2023-05-24 16:25:34.051095+00
+1	pbkdf2_sha256$320000$4Jq3dPkJLkr2GqwBbGivoX$ygOXfCu6R+35YXLrF3mtNfiyVtDW69YVmue0iIScoRc=	2023-05-30 19:24:01.037588+00	t	admin			admin@admin.com	t	t	2023-05-24 16:25:34.051095+00
 \.
 
 
@@ -665,6 +670,11 @@ COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 
 COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
 1	2023-05-24 16:26:07.746132+00	1	Product object (1)	1	[{"added": {}}]	7	1
+2	2023-05-30 19:24:27.996232+00	1	Shop object (1)	1	[{"added": {}}]	8	1
+3	2023-05-30 19:24:34.591403+00	2	Shop object (2)	1	[{"added": {}}]	8	1
+4	2023-05-30 19:24:45.643919+00	3	Shop object (3)	1	[{"added": {}}]	8	1
+5	2023-05-30 19:24:54.453187+00	4	Shop object (4)	1	[{"added": {}}]	8	1
+6	2023-05-30 19:25:06.243155+00	1	Stock object (1)	1	[{"added": {}}]	9	1
 \.
 
 
@@ -718,6 +728,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 ram5n8bhvwtqufwtic5w23ilw1kliyf5	.eJxVjEEOwiAQRe_C2hClwIBL956BzDCDVA1NSrsy3l2bdKHb_977L5VwXWpau8xpZHVWJ3X43QjzQ9oG-I7tNuk8tWUeSW-K3mnX14nledndv4OKvX5rEk9ggrDhGAygCA4FondSQrBQBBCt4zh4kEIkNsPRRPYOrGVHTr0_B9Y4kQ:1q1rJE:-LslhvDJWVgJHwbVvs2jPtnV8tek9aObynd9-jZwHw8	2023-06-07 16:25:56.686959+00
+8177k4krxk3t234jdua5ay1i0q8adds5	.eJxVjEEOwiAQRe_C2hClwIBL956BzDCDVA1NSrsy3l2bdKHb_977L5VwXWpau8xpZHVWJ3X43QjzQ9oG-I7tNuk8tWUeSW-K3mnX14nledndv4OKvX5rEk9ggrDhGAygCA4FondSQrBQBBCt4zh4kEIkNsPRRPYOrGVHTr0_B9Y4kQ:1q44wr:BecNfQygV40mscI0v1rGkGFf0mRmuZ6pA4qPNuUG5Hw	2023-06-13 19:24:01.040331+00
 \.
 
 
@@ -732,14 +743,14 @@ SELECT pg_catalog.setval('public."Comparator_product_id_seq"', 1, true);
 -- Name: Comparator_shop_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Comparator_shop_id_seq"', 1, false);
+SELECT pg_catalog.setval('public."Comparator_shop_id_seq"', 4, true);
 
 
 --
 -- Name: Comparator_stock_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Comparator_stock_id_seq"', 1, false);
+SELECT pg_catalog.setval('public."Comparator_stock_id_seq"', 1, true);
 
 
 --
@@ -788,7 +799,7 @@ SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, true);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 6, true);
 
 
 --
