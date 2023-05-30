@@ -6,4 +6,8 @@
   <li>docker compose up</li>
  </ul>
  <h3>Comandos para sacar un dump de la base de datos</h3>
+docker exec tfg-backend-1 /bin/sh
+python manage.py makemigations
+python manage.py migrate
 docker exec postgres pg_dump postgres > latest.sql (con la aplicación arrancada)
+
