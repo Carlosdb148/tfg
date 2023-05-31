@@ -39,22 +39,22 @@ export function ProductDetails() {
             </div>
         </div>
         <div className={styles.precioM}>
-            <div className={styles.Mtitulo}>Media Markt</div>
+            <div className={styles.Mtitulo}><div className={styles.mediamarktImg}/></div>
             <div className={styles.Mprecio}>{producto.precio.MediaMarkt}€</div>
             <div className={styles.Murl}><a href={producto.urls.MediaMarkt}>Comprar</a></div>
         </div>
         <div className={styles.precioA}>
-            <div className={styles.Mtitulo}>Amazon</div>
+            <div className={styles.Mtitulo}><div className={styles.amazonImg}></div></div>
             <div className={styles.Mprecio}>{producto.precio.Amazon}€</div>
             <div className={styles.Murl}><a href={producto.urls.Amazon}>Comprar</a></div>
         </div>
         <div className={styles.precioP}>
-            <div className={styles.Mtitulo}>Phone House</div>
+            <div className={styles.Mtitulo}><div className={styles.phonehouseImg}/></div>
             <div className={styles.Mprecio}>{producto.precio.PhoneHouse}€</div>
             <div className={styles.Murl}><a href={producto.urls.PhoneHouse}>Comprar</a></div>
         </div>
         <div className={styles.precioW}>
-            <div className={styles.Mtitulo}>Worten</div>
+            <div className={styles.Mtitulo}><div className={styles.wortenImg}/></div>
             <div className={styles.Mprecio}>{producto.precio.Worten}€</div>
             <div className={styles.Murl}><a href={producto.urls.Worten}>Comprar</a></div>
         </div>

@@ -53,6 +53,39 @@
     font-size: 1.3rem;
 }
 
+.amazonImg{
+    background-image: url(./../assets/img/Amazon_logo.svg.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100px;
+    width: 100px;
+}
+.mediamarktImg{
+    background-image: url(./../assets/img/pngwing.com.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100px;
+    width: 100px;
+}
+.phonehouseImg{
+    background-image: url(./../assets/img/phonehouse.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100px;
+    width: 100px;
+}
+.wortenImg{
+    background-image: url(./../assets/img/worten.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100px;
+    width: 100px;
+}
+
 .Mprecio{
     color: #009fff !important;
 }
@@ -62,6 +95,7 @@
     border: 1px solid #009fff;
     border-radius: 10px;
     text-align: center;
+    cursor: pointer;
 }
 
 .Murl a{
