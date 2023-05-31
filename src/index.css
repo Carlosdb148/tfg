@@ -132,6 +132,19 @@ code {
   margin-top: 40px;
 }
 
+.createProduct{
+  margin-right: 50px;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: white;
+}
+
+@media screen and (max-width: 700px) {
+  .createProduct{
+    display: none;
+  }
+}
+
 .navHome{
   margin-right: 50px;
   font-size: 1.3rem;
@@ -147,12 +160,13 @@ code {
   color: white;
 }
 
-.navHome2:hover{
+
+.createProduct:hover{
   color: black !important;
   transition: all .5s ease;
 }
 
-.navHome2:not(:hover){
+.createProduct:not(:hover){
   color: white !important;
   transition: all .5s ease;
 }
@@ -332,7 +346,7 @@ a{
   margin-top: 40px !important;
 }
 
-.registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContraseña{
+.registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia{
   margin: 0 auto;
   margin-bottom: 40px;
   width: 80%;
@@ -347,7 +361,7 @@ a{
   margin-top: 40px !important;
 }
 
-.loginUsuario, .loginContraseña{
+.loginUsuario, .loginContrasenia{
   margin: 0 auto;
   margin-bottom: 40px;
   width: 80%;

@@ -11,6 +11,7 @@ import { Privacidad } from "./pages/Privacidad";
 import { Cookies } from "./pages/Cookies";
 import { Login } from "./pages/Login";
 import { Registro } from "./pages/Registro";
+import { CrearProducto } from "./pages/CrearProducto";
 
 export function App() {
   return (
@@ -18,12 +19,14 @@ export function App() {
       <header className="navi">
       <Link to="/"><div className="logotipo"></div></Link>
         <div className="urlsNav">
+          <Link to="/crearProducto" className="createProduct">Crear Producto</Link>
           <Link to="/login" className="navHome">Login</Link>
           <Link to="/registro" className="navRegistro">Registro</Link>
         </div>
       </header>
       <Routes>
         <Route exact path="/producto/:productoId" element={<ProductDetails />}></Route>
+        <Route exact path="/crearProducto" element={<CrearProducto />}></Route>
         <Route path="/" element={<LandingPages />}></Route>
         <Route path="/aviso" element={<Aviso />}></Route>
         <Route path="/privacidad" element={<Privacidad />}></Route>
