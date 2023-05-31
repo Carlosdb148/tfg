@@ -16,7 +16,7 @@ import json
 
  
 class AddProduct(generics.GenericAPIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAdminUser]
     def post(self, request):
         item = ProductSerializer(data=request.data)
         
@@ -61,14 +61,17 @@ class GetPrice(generics.GenericAPIView):
     def get(self, request, id):
         def price(id):
             try:
+                numShops = Stock.objects.filter(product_id = id).distinct("shop_id").order_by("shop_id", "-date")
+                num = len(numShops)
                 query = '{}'
-                for x in range(4):
-                    shop = Shop.objects.get(id = x + 1)
-                    product = Stock.objects.filter(product_id = id, shop_id = x + 1).order_by("date")
+                for x in range(num):
+                    shop = Shop.objects.get(id = numShops[x].shop_id)
+                    product = Stock.objects.filter(product_id = id, shop_id = shop.id).order_by("date", )
                     data = {shop.name:str(product[0].price)}
                     result = json.loads(query)
                     result.update(data)
                     query = json.dumps(result)
+                    print(product[0].date)
 
                 return json.loads(query)
             except Exception as e:
@@ -76,10 +79,12 @@ class GetPrice(generics.GenericAPIView):
                 return "Error"
         def shopURL(id):
             try:
+                numShops = Stock.objects.filter(product_id = id).distinct("shop_id").order_by("shop_id", "-date")
+                num = len(numShops)
                 query = '{}'
-                for x in range(4):
-                    shop = Shop.objects.get(id = x + 1)
-                    product = Stock.objects.filter(product_id = id, shop_id = x + 1).order_by("date")
+                for x in range(num):
+                    shop = Shop.objects.get(id = numShops[x].shop_id)
+                    product = Stock.objects.filter(product_id = id, shop_id = shop.id).order_by("date")
                     data = {shop.name:str(product[0].url)}
                     result = json.loads(query)
                     result.update(data)
