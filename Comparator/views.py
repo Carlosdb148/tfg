@@ -33,14 +33,24 @@ class AddProduct(generics.GenericAPIView):
 class GetProducts(generics.GenericAPIView):
     def get(self, request):
         # checking for the parameters from the URL
-        items = Product.objects.all()
-        serializer = ProductSerializer(items, many=True)
-
-        # if there is something in items else raise error
-        if items:
-            return Response(serializer.data)
+        q = request.GET.get('q')
+        if(q):
+            items = Product.objects.filter(name__contains=q)
+            serializer = ProductSerializer(items, many=True)
+            # if there is something in items else raise error
+            if items:
+                return Response(serializer.data)
+            else:
+                return Response(status=status.HTTP_404_NOT_FOUND)
         else:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            items = Product.objects.all()
+            serializer = ProductSerializer(items, many=True)
+
+            # if there is something in items else raise error
+            if items:
+                return Response(serializer.data)
+            else:
+                return Response(status=status.HTTP_404_NOT_FOUND)
     
 
 #Register API
