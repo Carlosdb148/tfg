@@ -16,7 +16,7 @@ import json
 
  
 class AddProduct(generics.GenericAPIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         item = ProductSerializer(data=request.data)
         
