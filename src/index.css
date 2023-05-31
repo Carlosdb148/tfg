@@ -357,6 +357,11 @@ a{
   font-size: 1.4rem;
 }
 
+.registroImagen{
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
 .loginUsuario{
   margin-top: 40px !important;
 }
