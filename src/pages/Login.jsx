@@ -12,8 +12,10 @@ export function Login() {
       username: usuario,
       password: contraseña
     };
-
-    axios.post('http://localhost:8000/api/login', formData)
+    
+    const puertoActual = window.location.port;
+    if(puertoActual === "8000"){
+      axios.post('http://localhost:8000/api/login', formData)
       .then(response => {
         const token = response.data.access;
         localStorage.setItem('token', token);
@@ -22,6 +24,18 @@ export function Login() {
       .catch(error => {
         console.error(error);
       });
+    }else if(puertoActual === "8001"){
+      axios.post('http://localhost:8001/api/login', formData)
+      .then(response => {
+        const token = response.data.access;
+        localStorage.setItem('token', token);
+        console.log('Inicio de sesión exitoso');
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
+    
   };
 
   return (

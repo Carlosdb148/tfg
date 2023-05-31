@@ -7,11 +7,19 @@ export function ComparadorGrid() {
 
   const [productos, setProductos] = useState([]);
   
-
+  const puertoActual = window.location.port;
   useEffect(() => {
-    fetch("http://localhost:8000/api/getProducts").then(result => result.json()).then(data => {
-      setProductos(data);
-    });
+    
+    if(puertoActual === "8000"){
+      fetch("http://localhost:8000/api/getProducts").then(result => result.json()).then(data => {
+        setProductos(data);
+      });
+    }else if(puertoActual === "8001"){
+    fetch("http://localhost:8001/api/getProducts").then(result => result.json()).then(data => {
+        setProductos(data);
+      });
+    }
+
   }, []);
 
   return (

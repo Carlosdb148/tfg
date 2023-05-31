@@ -14,7 +14,9 @@ export function Registro() {
       password: contraseña.value
     };
 
-    axios.post('http://localhost:8000/api/register', formData)
+    const puertoActual = window.location.port;
+    if (puertoActual === "8000"){
+      axios.post('http://localhost:8000/api/register', formData)
       .then(response => {
         console.log(response.data);
         const loginData = {
@@ -31,6 +33,26 @@ export function Registro() {
       .catch(error => {
         console.error(error);
       });
+    }else if(puertoActual === "8001"){
+      axios.post('http://localhost:8001/api/register', formData)
+      .then(response => {
+        console.log(response.data);
+        const loginData = {
+          username: usuario.value,
+          password: contraseña.value
+        };
+        return axios.post('http://localhost:8001/api/login', loginData);
+      })
+      .then(response => {
+        const token = response.data.access;
+        localStorage.setItem('token', token);
+        console.log('Inicio de sesión exitoso');
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    }
+    
   };
 
   return (
