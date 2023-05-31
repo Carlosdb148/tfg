@@ -3,11 +3,11 @@ from django.db import models
 class Product(models.Model):
     name = models.CharField(max_length=128,  blank=False)
     description = models.TextField( blank=False)
-    image = models.ImageField(upload_to='images/', default=None)
+    image = models.TextField(max_length=1000000, default=None)
 
 class Shop(models.Model):
     name = models.CharField(max_length=128, blank=False)
-    logo = models.ImageField(upload_to='images/', default=None, blank=False)
+    logo = models.ImageField(upload_to='assets/img/', default=None, blank=False)
     products = models.ManyToManyField(Product, through='Stock')
 
 
