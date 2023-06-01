@@ -34,7 +34,7 @@ class GetProducts(generics.GenericAPIView):
     def get(self, request):
         # checking for the parameters from the URL
         q = request.GET.get('q')
-        filter = request.GET.get('filter')
+        filter = request.GET.get('type')
 
         items = Product.objects.all()
 
