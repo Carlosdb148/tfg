@@ -329,7 +329,7 @@ a{
     width: 40% !important;
   }
 
-  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia{
+  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia, .registroTipo{
     height: 60px !important;
   }
 
@@ -356,7 +356,7 @@ a{
   margin-top: 40px !important;
 }
 
-.registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia{
+.registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia, .registroTipo{
   margin: 0 auto;
   margin-bottom: 40px;
   width: 80%;
@@ -522,7 +522,7 @@ a{
     font-size: 1.2rem;
   }
 
-  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia{
+  .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia, .registroTipo{
     width: 90%;
   }
 }

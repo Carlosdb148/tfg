@@ -113,7 +113,7 @@ class GetPrice(generics.GenericAPIView):
                 productData = Product.objects.get(id = id)
                 productId = productData.id
                 productName = productData.name
-                productImg = "img"
+                productImg = productData.image
                 productDesc = productData.description
                 data = { "id":productId,
                          "nombre":productName,

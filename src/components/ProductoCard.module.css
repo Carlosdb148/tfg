@@ -8,12 +8,10 @@
 }
 
 .imagen{
-    background-image: url(../assets/img/iphone12red.webp);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: contain;
     height: 175px;
     min-width: 100%;
+    border-radius: 10px;
+    max-width: 100% !important;
 }
 
 .tarjeta{
