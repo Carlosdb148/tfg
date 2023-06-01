@@ -423,6 +423,10 @@ a{
   .formRegistro{
     width: 80%;
   }
+
+  .formLogin{
+    width: 80% !important;
+  }
 }
 
 @media screen and (max-width: 920px) {
@@ -485,6 +489,10 @@ a{
 
   .formRegistro{
     width: 95%;
+  }
+
+  .formLogin{
+    width: 95% !important;
   }
 }
 
