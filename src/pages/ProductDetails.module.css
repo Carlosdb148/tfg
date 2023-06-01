@@ -14,8 +14,27 @@
 
 .imagen{
     height: 175px;
-    min-width: 50%;
-    max-width: 50% !important;
+    max-width: 100% !important;
+}
+
+.contenedorImg{
+    padding-right: 10px;
+}
+
+.contenedorDescrip{
+    max-width: 450px;
+}
+
+@media screen and (max-width: 890px) {
+    .contenedorDescrip{
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 490px) {
+    .contenedorDescrip{
+        width: 95%;
+    }
 }
 
 .nombre{

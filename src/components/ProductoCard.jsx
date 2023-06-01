@@ -3,7 +3,7 @@ import styles from "./ProductoCard.module.css";
 
 export function ProductoCard({ producto }) {
   const decodeBase64Image = (base64Image) => {
-    const imageData = atob(base64Image.split(",")[1]); // Obtener los datos binarios de la imagen
+    const imageData = atob(base64Image.split(",")[1]);
     const arrayBuffer = new ArrayBuffer(imageData.length);
     const uintArray = new Uint8Array(arrayBuffer);
 
