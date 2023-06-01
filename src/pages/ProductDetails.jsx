@@ -6,6 +6,7 @@ export function ProductDetails() {
   const { productoId } = useParams();
   const [producto, setProducto] = useState(null);
   const puertoActual = window.location.port;
+
   useEffect(() => {
     if(puertoActual === "8000"){
         fetch("http://localhost:8000/api/price/" + productoId)
