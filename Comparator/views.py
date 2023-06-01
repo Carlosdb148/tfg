@@ -34,11 +34,19 @@ class GetProducts(generics.GenericAPIView):
     def get(self, request):
         # checking for the parameters from the URL
         q = request.GET.get('q')
+        filter = request.GET.get('filter')
 
         items = Product.objects.all()
 
         if(q):
             items = items.filter(name__contains=q)
+        if(filter):
+            if filter == 'mobile':
+                items = items.filter(type=1)
+            elif filter == 'computer':
+                items = items.filter(type=2)
+            elif filter == 'tablet':
+                items = items.filter(type=3)
 
         serializer = ProductSerializer(items, many=True)
 

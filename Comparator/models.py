@@ -1,8 +1,17 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+  
 
 class Product(models.Model):
+    class Type(models.IntegerChoices):
+        DEFAULT = 0, _('Undefined')
+        MOBILE = 1, _('Mobile')
+        COMPUTER = 2, _('Computer')
+        TABLET = 3, _('Tablet')
+
     name = models.CharField(max_length=128,  blank=False)
     description = models.TextField( blank=False)
+    type = models.IntegerField(default=Type.DEFAULT, choices=Type.choices)
     image = models.TextField(max_length=1000000, default=None)
 
 class Shop(models.Model):

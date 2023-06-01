@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
-        fields = ('id', 'name', 'description', 'image')
+        fields = ('id', 'name', 'description', 'type', 'image')
 
 
 class ShopSerializer(serializers.ModelSerializer):
