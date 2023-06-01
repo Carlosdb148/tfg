@@ -16,7 +16,7 @@ import json
 
  
 class AddProduct(generics.GenericAPIView):
-    permission_classes = [IsAuthenticated, IsAdminUser]
+    permission_classes = [IsAuthenticated]
     def post(self, request):
         item = ProductSerializer(data=request.data)
         
@@ -34,23 +34,19 @@ class GetProducts(generics.GenericAPIView):
     def get(self, request):
         # checking for the parameters from the URL
         q = request.GET.get('q')
-        if(q):
-            items = Product.objects.filter(name__contains=q)
-            serializer = ProductSerializer(items, many=True)
-            # if there is something in items else raise error
-            if items:
-                return Response(serializer.data)
-            else:
-                return Response(status=status.HTTP_404_NOT_FOUND)
-        else:
-            items = Product.objects.all()
-            serializer = ProductSerializer(items, many=True)
 
-            # if there is something in items else raise error
-            if items:
-                return Response(serializer.data)
-            else:
-                return Response(status=status.HTTP_404_NOT_FOUND)
+        items = Product.objects.all()
+
+        if(q):
+            items = items.filter(name__contains=q)
+
+        serializer = ProductSerializer(items, many=True)
+
+        # if there is something in items else raise error
+        if items:
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
     
 
 #Register API
@@ -59,7 +55,7 @@ class RegisterApi(APIView):
         serializer = RegisterSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.is_active = True
-        user = serializer.save()
+        serializer.save()
         return Response({
             "message": "User Created Successfully.  Now perform Login to get your token",
         })
