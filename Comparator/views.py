@@ -8,6 +8,8 @@ from rest_framework import generics, permissions, mixins
 from django.contrib.auth.models import User
 from rest_framework.permissions import  IsAdminUser, IsAuthenticated
 from rest_framework.views import APIView
+from ip2geotools.databases.noncommercial import DbIpCity
+from serpapi import GoogleSearch
 
 
 from bs4 import BeautifulSoup
@@ -132,3 +134,50 @@ class GetPrice(generics.GenericAPIView):
             "data" : getData(id)
 
         })
+    
+class GetLocation(generics.GenericAPIView):
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
+    def printDetails(self, ip):
+        res = DbIpCity.get(ip, api_key="free")
+        latitude = '%.7f'%(res.latitude)
+        longitude = '%.7f'%(res.longitude) 
+        return({'latitude' : latitude, 'longitude': longitude, 'city' : res.city, 'region' : res.region, 'country' : res.country})
+    def post(self, request):
+        ip = self.get_client_ip(request)
+        coords = self.printDetails(ip)
+        ll = f"@{coords['latitude']},{coords['longitude']},15.1z"
+        params = {
+            "engine": "google_maps",
+            "q": "MediaMarkt",
+            "ll": ll,
+            "type": "search",
+            "api_key": "fc60637faa050e2a6af4225a787b5fe789c962cd82e95c3c24406e8ffcabf4be"
+        }
+
+        search = GoogleSearch(params)
+        results = search.get_dict()
+
+        data_id = results['local_results'][0]['data_id']
+        place_id = results['local_results'][0]['place_id']
+        latitude = results['local_results'][0]['gps_coordinates']['latitude']
+        longitude = results['local_results'][0]['gps_coordinates']['longitude']
+
+        data = f'!4m5!3m4!1s{data_id}!8m2!3d{latitude}!4d{longitude}'
+
+        params = {
+            "engine": "google_maps",
+            "type": "place",
+            "data": data,
+            "place_id" : place_id,
+            "api_key": "fc60637faa050e2a6af4225a787b5fe789c962cd82e95c3c24406e8ffcabf4be"
+        }
+
+        search = GoogleSearch(params)
+        results = search.get_dict()
+        return Response(results)

@@ -66,3 +66,5 @@ whitenoise==6.2.0
 wrapt==1.14.1
 zope.interface==5.4.0
 bs4
+ip2geotools
+google-search-results
