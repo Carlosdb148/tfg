@@ -30,19 +30,19 @@ export function ComparadorGrid() {
       apiUrl += `?${params.toString()}`;
     }
 
-    if (puertoActual === "8000") {
-      fetch(`http://localhost:8000${apiUrl}`)
-        .then((result) => result.json())
-        .then((data) => {
-          setProductos(data);
-        });
-    } else if (puertoActual === "8001") {
-      fetch(`http://localhost:8001${apiUrl}`)
-        .then((result) => result.json())
-        .then((data) => {
-          setProductos(data);
-        });
-    }
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:${puertoActual}${apiUrl}`
+        );
+        const data = await response.json();
+        setProductos(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+
+    fetchData();
   }, [search, tipoFiltro]);
 
   const handleFiltrarPorTipo = (event) => {
