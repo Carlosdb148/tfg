@@ -176,3 +176,11 @@ class GetLocation(generics.GenericAPIView):
         search = GoogleSearch(params)
         results = search.get_dict()
         return Response(results['search_metadata']['google_maps_url'])
+    
+class IsAdmin(generics.GenericAPIView):
+    def get(self, request):
+        current_user = request.user
+        if(current_user.is_superuser):
+            return Response('ok')
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)

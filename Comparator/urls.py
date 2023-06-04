@@ -24,5 +24,6 @@ urlpatterns = [
     path(r'register', views.RegisterApi.as_view(), name='register'),
     path(r'protegida', Protegida.as_view(), name='protegida'),
     path(r'price/<int:id>', views.GetPrice.as_view(), name='get_price'),
-    path(r'getLocation', views.GetLocation.as_view(), name='get_price')
+    path(r'getLocation', views.GetLocation.as_view(), name='get_price'),
+    path(r'isAdmin', views.IsAdmin.as_view(), name='is_admin'),
 ]
