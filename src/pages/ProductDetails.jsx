@@ -27,33 +27,44 @@ export function ProductDetails() {
           setProducto(data.data);
         });
     }
-
+    if (puertoActual === "8000") {
     axios
       .post("http://localhost:8000/api/getLocation", { shop: "mediamarkt" })
       .then((response) => {
         setMediamarkt(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
       });
 
     axios
       .post("http://localhost:8000/api/getLocation", { shop: "phonehouse" })
       .then((response) => {
         setPhonehouse(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
       });
 
     axios
       .post("http://localhost:8000/api/getLocation", { shop: "worten" })
       .then((response) => {
         setWorten(response.data);
-      })
-      .catch((error) => {
-        console.error(error);
       });
+    }else if (puertoActual === "8001"){
+      axios
+      .post("http://localhost:8001/api/getLocation", { shop: "mediamarkt" })
+      .then((response) => {
+        setMediamarkt(response.data);
+      });
+
+    axios
+      .post("http://localhost:8001/api/getLocation", { shop: "phonehouse" })
+      .then((response) => {
+        setPhonehouse(response.data);
+      });
+
+    axios
+      .post("http://localhost:8001/api/getLocation", { shop: "worten" })
+      .then((response) => {
+        setWorten(response.data);
+      });
+    }; 
+
   }, [productoId]);
 
   if (!producto) {
