@@ -47,7 +47,7 @@
 }
 
 .precioM, .precioA, .precioP, .precioW{
-    width: 400px;
+    width: 500px;
     margin: 0 auto;
     margin-top: 100px;
     background-color: white;
@@ -111,6 +111,36 @@
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
+}
+
+@media screen and (max-width: 490px) {
+    .Murl2{
+        display: none;
+    }
+}
+
+.Murl2{
+    width: 120px;
+    border: 1px solid #009fff;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.Murl2 a{
+    color: black;
+    font-size: 1.4rem;
+}
+
+.Murl2:hover{
+    background-color: #009fff;
+    transition: all .5s ease;
+}
+
+.Murl2:hover a{
+    color: white;
+    transition: all .5s ease;
 }
 
 .Murl a{
