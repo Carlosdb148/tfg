@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export function CrearProducto() {
@@ -6,9 +6,35 @@ export function CrearProducto() {
   const [descripcion, setDescripcion] = useState('');
   const [imagen, setImagen] = useState(null);
   const [tipo, setTipo] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [mostrarMensaje, setMostrarMensaje] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      axios
+        .get('http://localhost:8000/api/isAdmin', {
+          headers: {
+            Authorization: 'Bearer ' + token,
+            'Content-Type': 'application/json;charset=utf-8',
+          },
+        })
+        .then((response) => {
+          setIsAdmin(response.data === 'ok');
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, []);
 
   const handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!isAdmin) {
+      setMostrarMensaje(true);
+      return;
+    }
 
     if (imagen) {
       const reader = new FileReader();
@@ -56,6 +82,9 @@ export function CrearProducto() {
 
   return (
     <div>
+      {mostrarMensaje && !isAdmin && (
+        <div><p className="inicioMensaje">Necesitas ser administrador para crear productos</p></div>
+      )}
       <form className="formRegistro" onSubmit={handleSubmit}>
         <p className="tituloRegistro">Crear Producto</p>
         <input
@@ -89,4 +118,4 @@ export function CrearProducto() {
       </form>
     </div>
   );
-}
+};

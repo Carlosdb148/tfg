@@ -34,23 +34,6 @@ services:
     networks:
         loadbalancer_network:
 
-  pgadmin:
-    user: root
-    image: dpage/pgadmin4
-    container_name: pgadmin
-    restart: unless-stopped
-    environment:
-      PGADMIN_DEFAULT_EMAIL: "admin@admin.com"
-      PGADMIN_DEFAULT_PASSWORD: "admin"
-    ports:
-      - "8200:80"
-    depends_on:
-      - db
-    volumes:
-      - ./pgadmin:/var/lib/pgadmin
-    networks:
-        loadbalancer_network:
-
   backend:
     build:
       context: .
