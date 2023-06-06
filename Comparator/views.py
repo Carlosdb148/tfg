@@ -138,14 +138,9 @@ class GetPrice(generics.GenericAPIView):
     
 class GetLocation(generics.GenericAPIView):
     def post(self, request):
-        send_url = "http://api.ipstack.com/check?access_key=76fe1d480d29d7bb28e77bd9a4596b07"
-        geo_req = requests.get(send_url)
-        geo_json = json.loads(geo_req.text)
-        latitude = geo_json['latitude']
-        longitude = geo_json['longitude']
-        city = geo_json['city']
-        region = geo_json['region_name']
-        coords = {'latitude' : latitude, 'longitude': longitude, 'city' : city, 'region' : region, }
+        latitude = request.data['latitude']
+        longitude = request.data['longitude']
+        coords = {'latitude' : latitude, 'longitude': longitude }
         ll = f"@{coords['latitude']},{coords['longitude']},15.1z"
         params = {
             "engine": "google_maps",
