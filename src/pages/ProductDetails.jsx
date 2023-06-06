@@ -10,61 +10,70 @@ export function ProductDetails() {
   const [mediamarkt, setMediamarkt] = useState("");
   const [phonehouse, setPhonehouse] = useState("");
   const [worten, setWorten] = useState("");
+  const [longitud, setLongitud] = useState("");
+  const [latitud, setLatitud] = useState("");
 
   useEffect(() => {
     if (puertoActual === "8000") {
       fetch("http://localhost:8000/api/price/" + productoId)
         .then((result) => result.json())
         .then((data) => {
-          console.log(data.data);
           setProducto(data.data);
         });
     } else if (puertoActual === "8001") {
       fetch("http://localhost:8001/api/price/" + productoId)
         .then((result) => result.json())
         .then((data) => {
-          console.log(data.data);
           setProducto(data.data);
         });
     }
-    if (puertoActual === "8000") {
-    axios
-      .post("http://localhost:8000/api/getLocation", { shop: "mediamarkt" })
-      .then((response) => {
-        setMediamarkt(response.data);
-      });
 
-    axios
-      .post("http://localhost:8000/api/getLocation", { shop: "phonehouse" })
-      .then((response) => {
-        setPhonehouse(response.data);
-      });
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
 
-    axios
-      .post("http://localhost:8000/api/getLocation", { shop: "worten" })
-      .then((response) => {
-        setWorten(response.data);
-      });
-    }else if (puertoActual === "8001"){
-      axios
-      .post("http://localhost:8001/api/getLocation", { shop: "mediamarkt" })
-      .then((response) => {
-        setMediamarkt(response.data);
-      });
-
-    axios
-      .post("http://localhost:8001/api/getLocation", { shop: "phonehouse" })
-      .then((response) => {
-        setPhonehouse(response.data);
-      });
-
-    axios
-      .post("http://localhost:8001/api/getLocation", { shop: "worten" })
-      .then((response) => {
-        setWorten(response.data);
-      });
-    }; 
-
+    function showPosition(position) {
+      setLatitud(position.coords.latitude);
+      setLongitud(position.coords.longitude);
+    
+      if (puertoActual === "8000") {
+        axios
+          .post("http://localhost:8000/api/getLocation", { shop: "mediamarkt", longitude: longitud, latitude: latitud })
+          .then((response) => {
+            setMediamarkt(response.data);
+          });
+    
+        axios
+          .post("http://localhost:8000/api/getLocation", { shop: "phonehouse", longitude: longitud, latitude: latitud })
+          .then((response) => {
+            setPhonehouse(response.data);
+          });
+    
+        axios
+          .post("http://localhost:8000/api/getLocation", { shop: "worten", longitude: longitud, latitude: latitud })
+          .then((response) => {
+            setWorten(response.data);
+          });
+        }else if (puertoActual === "8001"){
+          axios
+          .post("http://localhost:8001/api/getLocation", { shop: "mediamarkt", longitude: longitud, latitude: latitud })
+          .then((response) => {
+            setMediamarkt(response.data);
+          });
+    
+        axios
+          .post("http://localhost:8001/api/getLocation", { shop: "phonehouse", longitude: longitud, latitude: latitud })
+          .then((response) => {
+            setPhonehouse(response.data);
+          });
+    
+        axios
+          .post("http://localhost:8001/api/getLocation", { shop: "worten", longitude: longitud, latitude: latitud })
+          .then((response) => {
+            setWorten(response.data);
+          });
+        }; 
+    }
   }, [productoId]);
 
   if (!producto) {
