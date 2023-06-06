@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 export function ComparadorGrid() {
   const [productos, setProductos] = useState([]);
   const [tipoFiltro, setTipoFiltro] = useState("");
+  const [mostrarTodos, setMostrarTodos] = useState(false);
+  const [cantidadInicial, setCantidadInicial] = useState(15);
 
   const query = useQuery();
   const search = query.get("q");
@@ -88,10 +90,14 @@ export function ComparadorGrid() {
         </div>
 
         <ul className={styles.comparadorGrid}>
-          {productos.map((producto) => (
+          {productos.slice(0, mostrarTodos ? productos.length : cantidadInicial).map((producto) => (
             <ProductoCard key={producto.id} producto={producto} />
           ))}
         </ul>
+
+        {!mostrarTodos && productos.length > cantidadInicial && (
+          <div class={styles.flex}><button className={styles.verMas} onClick={() => setMostrarTodos(true)}>Ver más</button></div>
+        )}
       </div>
     </div>
   );

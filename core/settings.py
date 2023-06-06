@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 from datetime import timedelta
+from celery.schedules import crontab
 
 # env = environ.Env()
 # environ.Env.read_env()
@@ -191,3 +192,15 @@ SIMPLE_JWT = {
 # PUBLIC_MEDIA_LOCATION = 'media'
 # MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
 # DEFAULT_FILE_STORAGE = 'core.storage_backends.MediaStore'
+CELERY_BROKER_URL = 'redis://redis:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Madrid'
+CELERY_BEAT_SCHEDULE = {
+    'task-number-one': {
+        'task': 'Comparator.tasks.task_number_one',
+        'schedule': timedelta(seconds=180),
+    }
+}

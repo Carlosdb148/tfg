@@ -67,3 +67,4 @@ wrapt==1.14.1
 zope.interface==5.4.0
 bs4
 google-search-results
+nums_from_string
