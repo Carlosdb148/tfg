@@ -33,6 +33,22 @@ services:
       start_period: 80s
     networks:
         loadbalancer_network:
+  
+  redis:
+    image: redis:6.0.9
+    restart: always
+    ports:
+      - "6379:6379"
+    expose:
+      - 6379
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-h", "localhost", "ping" ]
+      interval: 1m
+      timeout: 5s
+    networks:
+        loadbalancer_network:
+          aliases:
+            - redis
 
   backend:
     build:
@@ -40,7 +56,7 @@ services:
       dockerfile: Dockerfile
     command: >
       sh -c "
-             python manage.py runserver 0.0.0.0:8000"
+             (celery -A core worker -l info -B &) && python manage.py runserver 0.0.0.0:8000"
 
     environment:
       - POSTGRES_PASSWORD=postgres
@@ -57,6 +73,8 @@ services:
       - .:/app/
 
     depends_on:
+      redis:
+        condition: service_healthy
       db:
         condition: service_healthy
 
@@ -71,7 +89,7 @@ services:
       dockerfile: Dockerfile
     command: >
       sh -c "
-             python manage.py runserver 0.0.0.0:8001"
+             (celery -A core worker -l info -B &) && python manage.py runserver 0.0.0.0:8001"
 
     environment:
       - POSTGRES_PASSWORD=postgres
@@ -88,6 +106,8 @@ services:
       - .:/app/
 
     depends_on:
+      redis:
+        condition: service_healthy
       db:
         condition: service_healthy
 
