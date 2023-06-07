@@ -14,7 +14,7 @@ hosts:
       - localhost:8000
       - localhost:8001
 paths:
-  - path: /scrap
+  - path: /
     servers:
       - localhost:8000
       - localhost:8001

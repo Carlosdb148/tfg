@@ -6,18 +6,17 @@ from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import nums_from_string
 
-from datetime import datetime
+from django.utils import timezone
 
 @shared_task()
 def task_number_one():
-    print("hola")
     def scrap(product, name):
         url = str(product.url)
         def amazon(soup):
             try:
                 results = soup.find(id="twister-plus-price-data-price")
                 price = results.get('value')
-                saveProdcut = Stock(product=product.product,shop=product.shop,price=price[:-2], date=datetime.now(), url=url)
+                saveProdcut = Stock(product=product.product,shop=product.shop,price=price[:-2], date=timezone.now(), url=url)
                 saveProdcut.save()
             except Exception as e:
                 print(e)
@@ -34,7 +33,7 @@ def task_number_one():
                     for job_element in job_elements:
                         prices = nums_from_string.get_nums(job_element.text.strip())
                     
-                saveProdcut = Stock(product=product.product,shop=product.shop,price=prices[0], date=datetime.now(), url=url)
+                saveProdcut = Stock(product=product.product,shop=product.shop,price=prices[0], date=timezone.now(), url=url)
                 saveProdcut.save()
             except Exception as e:
                 print(e)
@@ -43,7 +42,7 @@ def task_number_one():
             try:
                 results = soup.find(class_="price__numbers raised-decimal price__numbers--bold")
                 price = results.get('value')
-                saveProdcut = Stock(product=product.product,shop=product.shop,price=price[:-2], date=datetime.now(), url=url)
+                saveProdcut = Stock(product=product.product,shop=product.shop,price=price[:-2], date=timezone.now(), url=url)
                 saveProdcut.save()
             except Exception as e:
                 print(e)
@@ -52,7 +51,7 @@ def task_number_one():
             try:
                 results = soup.find(class_="precio mb-10")
                 prices = nums_from_string.get_nums(results.text.strip())
-                saveProdcut = Stock(product=product.product,shop=product.shop,price=prices[0], date=datetime.now(), url=url)
+                saveProdcut = Stock(product=product.product,shop=product.shop,price=prices[0], date=timezone.now(), url=url)
                 saveProdcut.save()
             except Exception as e:
                 print(e)

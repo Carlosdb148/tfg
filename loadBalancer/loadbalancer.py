@@ -2,7 +2,10 @@ import random
 
 import requests
 import yaml
-from flask import Flask, request
+from flask import Flask, request, redirect
+import time
+
+
 
 loadbalancer = Flask(__name__)
 
@@ -13,7 +16,7 @@ def load_configuration(path):
     return config
 
 
-config = load_configuration('loadbalancer.yaml')
+config = load_configuration('/app/loadbalancer.yaml')
 
 
 @loadbalancer.route('/')
@@ -26,10 +29,13 @@ def router():
     return 'Not Found', 404
 
 
-@loadbalancer.route('/<path>')
+@loadbalancer.route('/')
 def path_router(path):
     for entry in config['paths']:
         if ('/' + path) == entry['path']:
-            response = requests.get(f'http://{random.choice(entry["servers"])}')
-            return response.content, response.status_code
+            while(True):
+                return redirect(f'http://{random.choice(entry["servers"])}')
     return 'Not Found', 404
+
+
+loadbalancer.run(debug=True, host='0.0.0.0', port=5000)
