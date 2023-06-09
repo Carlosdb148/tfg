@@ -96,7 +96,7 @@ def task_number_one():
             pHouse(soup)
         else:
             print("error")
-        sendMail(1)
+        # sendMail(1)
     
     try:
         products = Product.objects.all().order_by("id")
