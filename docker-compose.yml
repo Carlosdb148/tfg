@@ -1,14 +1,14 @@
 services:
   loadbalander:
-        build:
-          context: ./loadBalancer
-          dockerfile: Dockerfile
-        ports:
-          - "9099:5000"
-        networks:
-          loadbalancer_network:
-            aliases:
-              - load-balancer
+    build:
+      context: ./loadBalancer
+      dockerfile: Dockerfile
+    ports:
+      - "9099:5000"
+    networks:
+      loadbalancer_network:
+        aliases:
+          - load-balancer
   db:
     user: root
     image: postgres
@@ -68,6 +68,7 @@ services:
 
     ports:
       - "8000:8000"
+      - "587:587"
 
     volumes:
       - .:/app/
