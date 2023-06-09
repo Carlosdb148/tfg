@@ -33,42 +33,40 @@ export function ProductDetails() {
     }
 
     function showPosition(position) {
-      setLatitud(position.coords.latitude);
-      setLongitud(position.coords.longitude);
     
       if (puertoActual === "8000") {
         axios
-          .post("http://localhost:8000/api/getLocation", { shop: "mediamarkt", longitude: longitud, latitude: latitud })
+          .post("http://localhost:8000/api/getLocation", { shop: "mediamarkt", longitude: position.coords.longitude, latitude: position.coords.latitude })
           .then((response) => {
             setMediamarkt(response.data);
           });
     
         axios
-          .post("http://localhost:8000/api/getLocation", { shop: "phonehouse", longitude: longitud, latitude: latitud })
+          .post("http://localhost:8000/api/getLocation", { shop: "phonehouse", longitude: position.coords.longitude, latitude: position.coords.latitude })
           .then((response) => {
             setPhonehouse(response.data);
           });
     
         axios
-          .post("http://localhost:8000/api/getLocation", { shop: "worten", longitude: longitud, latitude: latitud })
+          .post("http://localhost:8000/api/getLocation", { shop: "worten", longitude: position.coords.longitude, latitude: position.coords.latitude })
           .then((response) => {
             setWorten(response.data);
           });
         }else if (puertoActual === "8001"){
           axios
-          .post("http://localhost:8001/api/getLocation", { shop: "mediamarkt", longitude: longitud, latitude: latitud })
+          .post("http://localhost:8001/api/getLocation", { shop: "mediamarkt", longitude: position.coords.longitude, latitude: position.coords.latitude })
           .then((response) => {
             setMediamarkt(response.data);
           });
     
         axios
-          .post("http://localhost:8001/api/getLocation", { shop: "phonehouse", longitude: longitud, latitude: latitud })
+          .post("http://localhost:8001/api/getLocation", { shop: "phonehouse", longitude: position.coords.longitude, latitude: position.coords.latitude })
           .then((response) => {
             setPhonehouse(response.data);
           });
     
         axios
-          .post("http://localhost:8001/api/getLocation", { shop: "worten", longitude: longitud, latitude: latitud })
+          .post("http://localhost:8001/api/getLocation", { shop: "worten", longitude: position.coords.longitude, latitude: position.coords.latitude })
           .then((response) => {
             setWorten(response.data);
           });
