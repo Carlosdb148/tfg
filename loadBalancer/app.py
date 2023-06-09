@@ -16,16 +16,15 @@ config = load_configuration('/app/loadbalancer.yaml')
 
 @loadbalancer.route('/')
 def router():
+    minPing = 100
+    index = 0
     for entry in config['paths']:
-        minPing = 100
-        index = 0
         for ip in entry["internalsIPs"]:
-            response_list = ping(ip, size=40, count=10)
+            response_list = ping(ip, size=32, count=5)
             if response_list.rtt_avg_ms <= minPing:
                 minPing = response_list.rtt_avg_ms
                 server = entry["servers"][index]
             index =+ index
-            print(response_list.rtt_avg_ms)
 
     return redirect(f'http://{server}')
 
