@@ -130,10 +130,8 @@ class GetPrice(generics.GenericAPIView):
             except Exception as e:
                 print(e)
                 return "Error"
-
         return Response({
             "data" : getData(id)
-
         })
     
 class GetLocation(generics.GenericAPIView):
