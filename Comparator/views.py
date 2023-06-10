@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from rest_framework import status
-from .serializers import RegisterSerializer, UserSerializer, ProductSerializer, ShopSerializer, StockSerializer
+from .serializers import RegisterSerializer, UserSerializer, ProductSerializer, ShopSerializer, StockSerializer, FollowSerializer
 from rest_framework.decorators import api_view
-from .models import Product, Shop, Stock
+from .models import Product, Shop, Stock, Follow
 from rest_framework.response import Response
 from rest_framework import generics, permissions, mixins
 from django.contrib.auth.models import User
@@ -177,3 +177,20 @@ class IsAdmin(generics.GenericAPIView):
             return Response('ok')
         else:
             return Response(status=status.HTTP_404_NOT_FOUND)
+        
+class FollowProduct(generics.GenericAPIView):
+    permission_classes = [IsAuthenticated]
+    def post(self, request):
+        item = FollowSerializer(data=request.data)
+        
+        # validating for already existing data
+        if Follow.objects.filter(**request.data).exists():
+            Follow.objects.filter(**request.data).delete()
+            return Response('Product unfollowed correctly')
+    
+        if item.is_valid():
+            item.save()
+            return Response('Product followed correctly')
+        else:
+            return Response('An error ocurred while following the product', status=status.HTTP_404_NOT_FOUND)
+    
