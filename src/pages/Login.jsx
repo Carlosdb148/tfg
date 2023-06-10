@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
   const [usuario, setUsuario] = useState('');
   const [contraseña, setContraseña] = useState('');
+  const history = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,6 +32,7 @@ export function Login() {
         const token = response.data.access;
         localStorage.setItem('token', token);
         console.log('Inicio de sesión exitoso');
+        history('/');
       })
       .catch(error => {
         console.error(error);
