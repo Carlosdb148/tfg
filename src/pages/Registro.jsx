@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export function Registro() {
+  const history = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -47,6 +49,7 @@ export function Registro() {
         const token = response.data.access;
         localStorage.setItem('token', token);
         console.log('Inicio de sesión exitoso');
+        history('/');
       })
       .catch(error => {
         console.error(error);
