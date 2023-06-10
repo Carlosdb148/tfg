@@ -145,7 +145,7 @@ class GetLocation(generics.GenericAPIView):
             "q": request.data['shop'],
             "ll": ll,
             "type": "search",
-            "api_key": "fc60637faa050e2a6af4225a787b5fe789c962cd82e95c3c24406e8ffcabf4be"
+            "api_key": "a0de1980e19a843ab64e7d5337bd68c12859a89a3590659a2d8d699ceda80726"
         }
 
         search = GoogleSearch(params)
@@ -163,7 +163,7 @@ class GetLocation(generics.GenericAPIView):
             "type": "place",
             "data": data,
             "place_id" : place_id,
-            "api_key": "fc60637faa050e2a6af4225a787b5fe789c962cd82e95c3c24406e8ffcabf4be"
+            "api_key": "a0de1980e19a843ab64e7d5337bd68c12859a89a3590659a2d8d699ceda80726"
         }
 
         search = GoogleSearch(params)
