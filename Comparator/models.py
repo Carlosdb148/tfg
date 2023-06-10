@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-  
+from django.contrib.auth.models import User
 
 class Product(models.Model):
     class Type(models.IntegerChoices):
@@ -13,6 +13,7 @@ class Product(models.Model):
     description = models.TextField( blank=False)
     type = models.IntegerField(default=Type.DEFAULT, choices=Type.choices)
     image = models.TextField(max_length=1000000, default=None)
+    users = models.ManyToManyField(User, through='Follow')
 
 class Shop(models.Model):
     name = models.CharField(max_length=128, blank=False)
@@ -26,3 +27,7 @@ class Stock(models.Model):
     price= models.DecimalField(max_digits=10, decimal_places=2, blank=False)
     date = models.DateTimeField()
     url = models.TextField(blank=False)
+
+class Follow(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE,)

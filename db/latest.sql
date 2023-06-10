@@ -21,6 +21,40 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
+-- Name: Comparator_follow; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public."Comparator_follow" (
+    id bigint NOT NULL,
+    product_id bigint NOT NULL,
+    user_id integer NOT NULL
+);
+
+
+ALTER TABLE public."Comparator_follow" OWNER TO postgres;
+
+--
+-- Name: Comparator_follow_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public."Comparator_follow_id_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public."Comparator_follow_id_seq" OWNER TO postgres;
+
+--
+-- Name: Comparator_follow_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public."Comparator_follow_id_seq" OWNED BY public."Comparator_follow".id;
+
+
+--
 -- Name: Comparator_product; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -467,6 +501,13 @@ CREATE TABLE public.django_session (
 ALTER TABLE public.django_session OWNER TO postgres;
 
 --
+-- Name: Comparator_follow id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Comparator_follow" ALTER COLUMN id SET DEFAULT nextval('public."Comparator_follow_id_seq"'::regclass);
+
+
+--
 -- Name: Comparator_product id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -548,6 +589,14 @@ ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Data for Name: Comparator_follow; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public."Comparator_follow" (id, product_id, user_id) FROM stdin;
+\.
 
 
 --
@@ -730,6 +779,10 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 34	Can change stock	9	change_stock
 35	Can delete stock	9	delete_stock
 36	Can view stock	9	view_stock
+37	Can add follow	10	add_follow
+38	Can change follow	10	change_follow
+39	Can delete follow	10	delete_follow
+40	Can view follow	10	view_follow
 \.
 
 
@@ -738,7 +791,7 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$320000$4Jq3dPkJLkr2GqwBbGivoX$ygOXfCu6R+35YXLrF3mtNfiyVtDW69YVmue0iIScoRc=	2023-05-31 08:03:02.944019+00	t	admin			admin@admin.com	t	t	2023-05-24 16:25:34.051095+00
+1	pbkdf2_sha256$320000$4Jq3dPkJLkr2GqwBbGivoX$ygOXfCu6R+35YXLrF3mtNfiyVtDW69YVmue0iIScoRc=	2023-06-10 15:28:59.611059+00	t	admin			admin@admin.com	t	t	2023-05-24 16:25:34.051095+00
 \.
 
 
@@ -886,6 +939,7 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 7	Comparator	product
 8	Comparator	shop
 9	Comparator	stock
+10	Comparator	follow
 \.
 
 
@@ -921,6 +975,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 25	Comparator	0007_product_type	2023-06-01 07:50:16.676313+00
 26	Comparator	0008_alter_product_type	2023-06-01 07:57:13.087299+00
 27	Comparator	0009_alter_product_type	2023-06-01 10:11:02.976085+00
+28	Comparator	0002_follow_product_type_product_users_and_more	2023-06-10 15:28:48.357044+00
 \.
 
 
@@ -932,7 +987,15 @@ COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 ram5n8bhvwtqufwtic5w23ilw1kliyf5	.eJxVjEEOwiAQRe_C2hClwIBL956BzDCDVA1NSrsy3l2bdKHb_977L5VwXWpau8xpZHVWJ3X43QjzQ9oG-I7tNuk8tWUeSW-K3mnX14nledndv4OKvX5rEk9ggrDhGAygCA4FondSQrBQBBCt4zh4kEIkNsPRRPYOrGVHTr0_B9Y4kQ:1q1rJE:-LslhvDJWVgJHwbVvs2jPtnV8tek9aObynd9-jZwHw8	2023-06-07 16:25:56.686959+00
 8177k4krxk3t234jdua5ay1i0q8adds5	.eJxVjEEOwiAQRe_C2hClwIBL956BzDCDVA1NSrsy3l2bdKHb_977L5VwXWpau8xpZHVWJ3X43QjzQ9oG-I7tNuk8tWUeSW-K3mnX14nledndv4OKvX5rEk9ggrDhGAygCA4FondSQrBQBBCt4zh4kEIkNsPRRPYOrGVHTr0_B9Y4kQ:1q44wr:BecNfQygV40mscI0v1rGkGFf0mRmuZ6pA4qPNuUG5Hw	2023-06-13 19:24:01.040331+00
 a3r5afftgy3nixljq1fpm45jspmydtnq	.eJxVjEEOwiAQRe_C2hClwIBL956BzDCDVA1NSrsy3l2bdKHb_977L5VwXWpau8xpZHVWJ3X43QjzQ9oG-I7tNuk8tWUeSW-K3mnX14nledndv4OKvX5rEk9ggrDhGAygCA4FondSQrBQBBCt4zh4kEIkNsPRRPYOrGVHTr0_B9Y4kQ:1q4GnO:j9O3JXobbu-GfR7DlwCjmzuLV-d8dNfML4UB1FBvfBo	2023-06-14 08:03:02.947591+00
+uzcub80esv2iegmr057f3guer6z41zeu	.eJxVjEEOwiAQRe_C2hClwIBL956BzDCDVA1NSrsy3l2bdKHb_977L5VwXWpau8xpZHVWJ3X43QjzQ9oG-I7tNuk8tWUeSW-K3mnX14nledndv4OKvX5rEk9ggrDhGAygCA4FondSQrBQBBCt4zh4kEIkNsPRRPYOrGVHTr0_B9Y4kQ:1q80WR:eAeBw7lFZwE4fIFPoaoYTr_QEYAdjtq2tbhV6yQnCVc	2023-06-24 15:28:59.613202+00
 \.
+
+
+--
+-- Name: Comparator_follow_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public."Comparator_follow_id_seq"', 1, false);
 
 
 --
@@ -974,7 +1037,7 @@ SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
 -- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.auth_permission_id_seq', 36, true);
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 40, true);
 
 
 --
@@ -1009,14 +1072,22 @@ SELECT pg_catalog.setval('public.django_admin_log_id_seq', 106, true);
 -- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_content_type_id_seq', 9, true);
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 10, true);
 
 
 --
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 27, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 28, true);
+
+
+--
+-- Name: Comparator_follow Comparator_follow_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Comparator_follow"
+    ADD CONSTRAINT "Comparator_follow_pkey" PRIMARY KEY (id);
 
 
 --
@@ -1180,6 +1251,20 @@ ALTER TABLE ONLY public.django_session
 
 
 --
+-- Name: Comparator_follow_product_id_0be46e92; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "Comparator_follow_product_id_0be46e92" ON public."Comparator_follow" USING btree (product_id);
+
+
+--
+-- Name: Comparator_follow_user_id_0f3d0548; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX "Comparator_follow_user_id_0f3d0548" ON public."Comparator_follow" USING btree (user_id);
+
+
+--
 -- Name: Comparator_stock_product_id_40b028be; Type: INDEX; Schema: public; Owner: postgres
 --
 
@@ -1282,6 +1367,22 @@ CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING 
 --
 
 CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: Comparator_follow Comparator_follow_product_id_0be46e92_fk_Comparator_product_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Comparator_follow"
+    ADD CONSTRAINT "Comparator_follow_product_id_0be46e92_fk_Comparator_product_id" FOREIGN KEY (product_id) REFERENCES public."Comparator_product"(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: Comparator_follow Comparator_follow_user_id_0f3d0548_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Comparator_follow"
+    ADD CONSTRAINT "Comparator_follow_user_id_0f3d0548_fk_auth_user_id" FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --
