@@ -26,4 +26,6 @@ urlpatterns = [
     path(r'price/<int:id>', views.GetPrice.as_view(), name='get_price'),
     path(r'getLocation', views.GetLocation.as_view(), name='get_price'),
     path(r'isAdmin', views.IsAdmin.as_view(), name='is_admin'),
+    path(r'follow', views.FollowProduct.as_view(), name='follow_product'),
+    path(r'isFollowed', views.IsFollowed.as_view(), name='is_followed'),
 ]
