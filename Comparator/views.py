@@ -199,7 +199,7 @@ class IsFollowed(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
         current_user = request.user
-
+        
         # validating for already existing data
         if Follow.objects.filter(**{'user' : current_user.id ,'product' : request.data['product']}).exists():
             return Response({'follow': True})
