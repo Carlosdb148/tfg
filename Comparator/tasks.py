@@ -1,27 +1,33 @@
 from __future__ import absolute_import, unicode_literals
 from celery import shared_task
-from .models import Product, Shop, Stock
+from .models import Product, Shop, Stock, Follow
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import nums_from_string
 from django.utils import timezone
-from django.core.mail import send_mail, send_mass_mail
+from django.core.mail import send_mass_mail
+from django.contrib.auth.models import User
 
 
 @shared_task()
 def task_number_one():
     def scrap(product, name):
         url = str(product.url)
-        # def sendMail(price):
-        #     # usersID = XXX.objects.filter(product_id = product.id).distinct("product_id")
-        #     datatuple = []
-        #     # for userID in usersID:
-        #     #     user = XXXUserXXX.objects.filter(id = userID.id)
-        #     #     datatuple.append(("Traziem ha detectado un descuento", "El producto " + product.name + " ha sufrido una baja de precio en la tienda " + product.shop + ", costaba " + product.price + " y ahora su precio es " + price, "carmelonixac@gmail.com", [user.correo]))
-        #     datatuple.append(("Traziem ha detectado un descuento", "El producto " + "product.name" + " ha sufrido una baja de precio en la tienda " + "product.shop" + ", costaba " + "product.price" + " y ahora su precio es " + "price", "carmelonixac@gmail.com", ["izamm1610@gmail.com"]))
-        #     datatuple.append(("Traziem ha detectado un descuento", "El producto " + "product.name" + " ha sufrido una baja de precio en la tienda " + "product.shop" + ", costaba " + "product.price" + " y ahora su precio es " + "price", "carmelonixac@gmail.com", ["imorales1610@ieszaidinvergeles.org"]))
-
-        #     send_mass_mail(tuple(datatuple))
+        def sendMail(price):
+            usersID = Follow.objects.filter(product_id = product.product)
+            datatuple = []
+            if usersID:
+                for userID in usersID:
+                    print(userID.id)
+                    user = User.objects.get(id = userID.id)
+                    nameProduct = Product.objects.get(id = product.product_id)
+                    nameShop = Shop.objects.get(id = product.shop_id)
+                    datatuple.append(("Traziem ha detectado un descuento", "El producto " + nameProduct.name + " ha sufrido una baja de precio en la tienda " + nameShop.name + ", costaba " + str(product.price) + " y ahora su precio es " + str(price), "carmelonixac@gmail.com", [user.email]))
+                send_mass_mail(tuple(datatuple))
+            else:
+                return
+            
+            
         def amazon(soup):
             try:
                 results = soup.find(id="twister-plus-price-data-price")
@@ -31,8 +37,9 @@ def task_number_one():
             except Exception as e:
                 print(e)
                 return "Error"
-            # if price < product.price:
-            #     sendMail(price)
+            if int(price[:-2]) < product.price:
+                sendMail(int(price[:-2]))
+
         def mediaM(soup):
             try:
                 results = soup.find(id="StyledPdpWrapper")
@@ -44,14 +51,13 @@ def task_number_one():
                     job_elements = results.find_all("span", class_="sc-hLBbgP qDhCX")
                     for job_element in job_elements:
                         price = nums_from_string.get_nums(job_element.text.strip())
-                    
                 saveProdcut = Stock(product=product.product,shop=product.shop,price=price[0], date=timezone.now(), url=url)
                 saveProdcut.save()
             except Exception as e:
                 print(e)
                 return "Error"
-            # if price < product.price:
-            #     sendMail(price)
+            if int(price[0]) < product.price:
+                sendMail(int(price[0]))
         def worten(soup):
             try:
                 results = soup.find(class_="price__numbers raised-decimal price__numbers--bold")
@@ -61,8 +67,8 @@ def task_number_one():
             except Exception as e:
                 print(e)
                 return "Error"
-            # if price < product.price:
-            #     sendMail(price)
+            if int(price[:-2]) < product.price:
+                sendMail(int(price[:-2]))
         def pHouse(soup):
             try:
                 results = soup.find(class_="precio mb-10")
@@ -72,8 +78,8 @@ def task_number_one():
             except Exception as e:
                 print(e)
                 return "Error"
-            # if price < product.price:
-            #     sendMail(price)
+            if int(price[0]) < product.price:
+                sendMail(int(price[0]))
 
             
         req = Request(
@@ -96,16 +102,15 @@ def task_number_one():
             pHouse(soup)
         else:
             print("error")
-        # sendMail(1)
     
     try:
         products = Product.objects.all().order_by("id")
         for x in products:
-            numShops = Stock.objects.filter(product_id = x.id).distinct("shop_id").order_by("shop_id", "-date")
+            numShops = Stock.objects.filter(product_id = x.id).distinct("shop_id").order_by("shop_id", "date")
             num = len(numShops)
             for y in range(num):
                 shop = Shop.objects.get(id = numShops[y].shop_id)
-                product = Stock.objects.filter(product_id = x.id, shop_id = shop.id).order_by("date")
+                product = Stock.objects.filter(product_id = x.id, shop_id = shop.id).order_by("-date")
                 scrap(product[0], shop.name)
     except Exception as e:
         print(e)
