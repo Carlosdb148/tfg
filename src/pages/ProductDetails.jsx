@@ -6,12 +6,14 @@ import axios from "axios";
 export function ProductDetails() {
   const { productoId } = useParams();
   const [producto, setProducto] = useState(null);
+  const [follow, setFollow] = useState(null);
   const puertoActual = window.location.port;
   const [mediamarkt, setMediamarkt] = useState("");
   const [phonehouse, setPhonehouse] = useState("");
   const [worten, setWorten] = useState("");
   const [longitud, setLongitud] = useState("");
   const [latitud, setLatitud] = useState("");
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (puertoActual === "8000") {
@@ -27,6 +29,21 @@ export function ProductDetails() {
           setProducto(data.data);
         });
     }
+
+    axios
+      .post("http://localhost:8000/api/isFollowed", { 'product' : productoId }, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      })
+      .then((response) => {
+        if(response.data.follow){
+          setFollow('blue');
+        }else{
+          setFollow('gray');
+        }
+      });
 
     // if (navigator.geolocation) {
     //   navigator.geolocation.getCurrentPosition(showPosition);
@@ -93,6 +110,26 @@ export function ProductDetails() {
   };
 
   const imageUrl = decodeBase64Image(producto.foto);
+
+  function followProduct() {
+    axios
+      .post("http://localhost:8000/api/follow", { 'product' : productoId }, {
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      })
+      .then((response) => {
+        if(response.data.follow){
+          console.log('pon');
+          setFollow('blue');
+        }else{
+          console.log('quita');
+          setFollow('gray');
+        }
+      });
+  }
+
   return (
     <div>
       <div className={styles.detailsContainer}>
@@ -104,7 +141,10 @@ export function ProductDetails() {
           />
         </div>
         <div className={styles.contenedorDescrip}>
-          <p className={styles.nombre}>{producto.nombre}</p>
+          <div className={styles.productFlex}>
+            <p className={styles.nombre}>{producto.nombre}</p>
+            <p><i id="follow" class="fa-solid fa-heart" style={{color : follow}} onClick={followProduct}></i></p>
+          </div>
           <p className={styles.descripcion}>{producto.descripcion}</p>
         </div>
       </div>

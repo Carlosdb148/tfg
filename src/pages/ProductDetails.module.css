@@ -162,6 +162,20 @@
     margin-bottom: 100px;
 }
 
+.productFlex{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .like{
+    color: blue !important;
+} */
+
+.fa-heart:hover{
+    color: blue;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 890px){
     .detailsContainer{
         width: 500px;

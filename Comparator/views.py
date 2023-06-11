@@ -187,11 +187,11 @@ class FollowProduct(generics.GenericAPIView):
         # validating for already existing data
         if Follow.objects.filter(**{'user' : current_user.id ,'product' : request.data['product']}).exists():
             Follow.objects.filter(**{'user' : current_user.id ,'product' : request.data['product']}).delete()
-            return Response('Product unfollowed correctly')
+            return Response({'follow': False})
     
         if item.is_valid():
             item.save()
-            return Response('Product followed correctly')
+            return Response({'follow': True})
         else:
             return Response('An error ocurred while following the product', status=status.HTTP_404_NOT_FOUND)
         
@@ -199,8 +199,7 @@ class IsFollowed(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
         current_user = request.user
-        item = FollowSerializer(data={'user' : current_user.id ,'product' : request.data['product']})
-        
+
         # validating for already existing data
         if Follow.objects.filter(**{'user' : current_user.id ,'product' : request.data['product']}).exists():
             return Response({'follow': True})
