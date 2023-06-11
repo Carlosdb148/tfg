@@ -199,7 +199,6 @@ class IsFollowed(generics.GenericAPIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
         current_user = request.user
-        item = FollowSerializer(data={'user' : current_user.id ,'product' : request.data['product']})
         
         # validating for already existing data
         if Follow.objects.filter(**{'user' : current_user.id ,'product' : request.data['product']}).exists():
