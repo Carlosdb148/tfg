@@ -1,10 +1,5 @@
-import React, { useState } from 'react';
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { ProductDetails } from './pages/ProductDetails';
 import { LandingPages } from './pages/LandingPages';
 import { Aviso } from './pages/Aviso';
@@ -13,16 +8,39 @@ import { Cookies } from './pages/Cookies';
 import { Login } from './pages/Login';
 import { Registro } from './pages/Registro';
 import { CrearProducto } from './pages/CrearProducto';
+import axios from "axios";
+
 
 export function App() {
   const [isAdmin, setIsAdmin] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('token'));
+  const puertoActual = window.location.port;
+  
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:" + puertoActual + "/api/isAdmin", {
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json;charset=utf-8',
+        },
+      })
+      .then((response) => {
+        setIsAdmin(true);
+      })
+      .catch(error =>{
+        setIsAdmin(false);
+      });
+  }, [token, puertoActual]);
 
   const handleLogin = () => {
+    setToken(localStorage.getItem('token'));
     setIsAdmin(true);
   };
 
   const handleLogout = () => {
     setIsAdmin(false);
+    setToken(null);
     localStorage.removeItem('token');
   };
 
@@ -45,10 +63,10 @@ export function App() {
         </Link>
         <div className="urlsNav">
           {renderCrearProductoButton()}
-          {isAdmin ? (
-            <button onClick={handleLogout} className="navHome3">
+          {isAdmin || token ? (
+            <a onClick={handleLogout} className="navHome3">
               Logout
-            </button>
+            </a>
           ) : (
             <React.Fragment>
               <Link to="/login" className="navHome">
@@ -56,31 +74,24 @@ export function App() {
               </Link>
               <Link to="/registro" className="navRegistro">
                 Registro
-            </Link>
+              </Link>
             </React.Fragment>
           )}
         </div>
       </header>
       <Routes>
-        <Route
-          exact
-          path="/producto/:productoId"
-          element={<ProductDetails />}
-        ></Route>
+        <Route exact path="/producto/:productoId" element={<ProductDetails />} />
         <Route
           exact
           path="/crearProducto"
           element={<CrearProducto isAdmin={isAdmin} />}
-        ></Route>
-        <Route path="/" element={<LandingPages />}></Route>
-        <Route path="/aviso" element={<Aviso />}></Route>
-        <Route path="/privacidad" element={<Privacidad />}></Route>
-        <Route path="/cookies" element={<Cookies />}></Route>
-        <Route
-          path="/login"
-          element={<Login onLogin={handleLogin} />}
-        ></Route>
-        <Route path="/registro" element={<Registro />}></Route>
+        />
+        <Route path="/" element={<LandingPages />} />
+        <Route path="/aviso" element={<Aviso />} />
+        <Route path="/privacidad" element={<Privacidad />} />
+        <Route path="/cookies" element={<Cookies />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/registro" element={<Registro />} />
       </Routes>
       <footer className="footer">
         <div className="flex3">
@@ -90,19 +101,19 @@ export function App() {
             </Link>
           </div>
           <div className="derechaNAV">
-            {isAdmin ? (
+            {isAdmin || token ? (
               <a onClick={handleLogout} className="navRegistro2">
                 Logout
               </a>
             ) : (
               <React.Fragment>
-              <Link to="/login" className="navHome2">
-                Login
-              </Link>
-              <Link to="/registro" className="navRegistro2">
-                Registro
-            </Link>
-            </React.Fragment>
+                <Link to="/login" className="navHome2">
+                  Login
+                </Link>
+                <Link to="/registro" className="navRegistro2">
+                  Registro
+                </Link>
+              </React.Fragment>
             )}
           </div>
         </div>
