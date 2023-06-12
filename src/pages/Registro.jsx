@@ -68,7 +68,7 @@ export function Registro() {
         <input type="email" className="registroEmail" placeholder="Email" name="email" />
         <input type="text" className="registroUsuario" placeholder="Usuario" name="usuario" />
         <input type="text" className="registroContrasenia" placeholder="Contraseña" name="contraseña" />
-        <input type="submit" className="registroBtn" />
+        <input type="submit" className="registroBtn" value="Registrar" />
       </form>
     </div>
   );

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.1ee30017.css",
-    "main.js": "/static/js/main.421be4ab.js",
+    "main.css": "/static/css/main.28f613ca.css",
+    "main.js": "/static/js/main.23168861.js",
     "static/media/02.jpg": "/static/media/02.9c629f158ee009bcc94c.jpg",
     "static/media/pexels-pixabay-4158.jpg": "/static/media/pexels-pixabay-4158.208f5bf7214ba72084b3.jpg",
     "static/media/Amazon_logo.svg.png": "/static/media/Amazon_logo.svg.6b1fcc03bc93beb438e1.png",
@@ -9,11 +9,11 @@
     "static/media/phonehouse.png": "/static/media/phonehouse.35376a4d35e6ce8c4932.png",
     "static/media/worten.png": "/static/media/worten.fdcabeb7120868ab30a3.png",
     "index.html": "/index.html",
-    "main.1ee30017.css.map": "/static/css/main.1ee30017.css.map",
-    "main.421be4ab.js.map": "/static/js/main.421be4ab.js.map"
+    "main.28f613ca.css.map": "/static/css/main.28f613ca.css.map",
+    "main.23168861.js.map": "/static/js/main.23168861.js.map"
   },
   "entrypoints": [
-    "static/css/main.1ee30017.css",
-    "static/js/main.421be4ab.js"
+    "static/css/main.28f613ca.css",
+    "static/js/main.23168861.js"
   ]
 }

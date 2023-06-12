@@ -155,7 +155,7 @@ code {
 .navHome2{
   margin: 0 auto;
   font-weight: 300;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-decoration: none;
   color: white;
 }
@@ -261,7 +261,7 @@ code {
   margin: 0 auto;
   margin-top: 30px;
   font-weight: 300;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-decoration: none;
   color: white;
 }
@@ -349,14 +349,15 @@ a{
   margin: 0 auto;
   margin-top: 100px;
   width: 50%;
-  border: 1px solid black;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   margin-bottom: 100px;
   background-image: url(./assets/img/02.jpg);
-  background-position: top center;
+  background-position: center center;
+  background-size: cover;
   background-repeat: no-repeat;
+  box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (min-width: 1800px) {
@@ -369,11 +370,11 @@ a{
   }
 
   .registroNombre, .registroApellido, .registroEmail, .registroUsuario, .registroContrasenia, .registroTipo{
-    height: 60px !important;
+    height: 40px !important;
   }
 
   .loginUsuario, .loginContrasenia{
-    height: 60px !important;
+    height: 40px !important;
   }
 }
 
@@ -381,14 +382,15 @@ a{
   margin: 0 auto;
   margin-top: 100px;
   width: 50%;
-  border: 1px solid black;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   margin-bottom: 100px;
   background-image: url(./assets/img/02.jpg);
   background-position: center center;
+  background-size: cover;
   background-repeat: no-repeat;
+  box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 .registroNombre{
@@ -403,7 +405,7 @@ a{
   border-radius: 3px;
   border: 1px solid black;
   color: black;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .registroImagen{
@@ -419,11 +421,11 @@ a{
   margin: 0 auto;
   margin-bottom: 40px;
   width: 80%;
-  height: 40px;
+  height: 30px;
   border-radius: 3px;
   border: 1px solid black;
   color: black;
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .tituloRegistro{
@@ -435,7 +437,7 @@ a{
 }
 
 .registroNombre::placeholder, .registroApellido::placeholder, .registroEmail::placeholder, .registroUsuario::placeholder, .registroContrasenia::placeholder{
-  font-size: 1.4rem;
+  font-size: 1rem;
 }
 
 .registroBtn{
@@ -449,13 +451,13 @@ a{
   line-height: 40px;
   cursor: pointer;
   margin-bottom: 40px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.75);
 }
 
 .registroBtn:hover{
   background-color: black;
   color: white;
-  transition: all .5s ease;
+  transition: all .3s ease;
 }
 
 @media screen and (max-width: 1000px) {
