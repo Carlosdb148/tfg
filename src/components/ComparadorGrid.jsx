@@ -10,6 +10,7 @@ export function ComparadorGrid() {
   const [tipoFiltro, setTipoFiltro] = useState("");
   const [mostrarTodos, setMostrarTodos] = useState(false);
   const [cantidadInicial, setCantidadInicial] = useState(15);
+  const [error, setError] = useState('');
 
   const query = useQuery();
   const search = query.get("q");
@@ -40,7 +41,8 @@ export function ComparadorGrid() {
         const data = await response.json();
         setProductos(data);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        setProductos([]);
+        setError('Ningún producto coincide con la búsqueda');
       }
     };
 
@@ -88,7 +90,7 @@ export function ComparadorGrid() {
             <option value="tablet">Tablet</option>
           </select>
         </div>
-
+        <div><p className="inicioMensaje">{error}</p></div>
         <ul className={styles.comparadorGrid}>
           {productos.slice(0, mostrarTodos ? productos.length : cantidadInicial).map((producto) => (
             <ProductoCard key={producto.id} producto={producto} />
