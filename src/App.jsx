@@ -50,13 +50,15 @@ export function App() {
               Logout
             </button>
           ) : (
-            <Link to="/login" className="navHome">
-              Login
+            <React.Fragment>
+              <Link to="/login" className="navHome">
+                Login
+              </Link>
+              <Link to="/registro" className="navRegistro">
+                Registro
             </Link>
+            </React.Fragment>
           )}
-          <Link to="/registro" className="navRegistro">
-            Registro
-          </Link>
         </div>
       </header>
       <Routes>
@@ -89,17 +91,19 @@ export function App() {
           </div>
           <div className="derechaNAV">
             {isAdmin ? (
-              <button onClick={handleLogout} className="navHome6">
+              <a onClick={handleLogout} className="navRegistro2">
                 Logout
-              </button>
+              </a>
             ) : (
+              <React.Fragment>
               <Link to="/login" className="navHome2">
                 Login
               </Link>
-            )}
-            <Link to="/registro" className="navRegistro2">
-              Registro
+              <Link to="/registro" className="navRegistro2">
+                Registro
             </Link>
+            </React.Fragment>
+            )}
           </div>
         </div>
         <div className="separador"></div>
