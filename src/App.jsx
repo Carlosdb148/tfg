@@ -89,7 +89,7 @@ export function App() {
           </div>
           <div className="derechaNAV">
             {isAdmin ? (
-              <button onClick={handleLogout} className="navHome6">
+              <button onClick={handleLogout} className="navRegistro2">
                 Logout
               </button>
             ) : (
