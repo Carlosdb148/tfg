@@ -83,12 +83,11 @@ class GetPrice(generics.GenericAPIView):
                 query = '{}'
                 for x in range(num):
                     shop = Shop.objects.get(id = numShops[x].shop_id)
-                    product = Stock.objects.filter(product_id = id, shop_id = shop.id).order_by("date", )
+                    product = Stock.objects.filter(product_id = id, shop_id = shop.id).order_by("-date")
                     data = {shop.name:str(product[0].price)}
                     result = json.loads(query)
                     result.update(data)
                     query = json.dumps(result)
-                    print(product[0].date)
 
                 return json.loads(query)
             except Exception as e:

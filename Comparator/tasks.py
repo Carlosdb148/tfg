@@ -31,14 +31,30 @@ def task_number_one():
         def amazon(soup):
             try:
                 results = soup.find(id="twister-plus-price-data-price")
-                price = results.get('value')
-                saveProdcut = Stock(product=product.product,shop=product.shop,price=price[:-2], date=timezone.now(), url=url)
-                saveProdcut.save()
+                if results:
+                    if results.get('value'):
+                        price = results.get('value')
+                        if price:
+                            saveProdcut = Stock(product=product.product,shop=product.shop,price=price[:-2], date=timezone.now(), url=url)
+                            saveProdcut.save()
+                            if int(price[:-2]) < product.price:
+                                sendMail(int(price[:-2]))
+                else:
+                    req = Request(
+                        url=url, 
+                        headers={'User-Agent': 'Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148',
+                                'Accept-Language': 'en-US,en;q=0.9,es;q=0.8',
+                                'Upgrade-Insecure-Requests': '1',
+                                'referer' : 'https://www.google.com/',
+                                'Accept': 'text/html'}
+                    )
+                    html = urlopen(req).read().decode("utf-8")
+                    soup = BeautifulSoup(html, "html.parser")
+                    amazon(soup)
             except Exception as e:
                 print(e)
                 return "Error"
-            if int(price[:-2]) < product.price:
-                sendMail(int(price[:-2]))
+            
 
         def mediaM(soup):
             try:
