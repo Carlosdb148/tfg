@@ -4,16 +4,20 @@
     margin-top: 100px;
     background-color: white;
     border-radius: 10px;
-    border: 1px solid black;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     padding: 20px;
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.3);
 }
 
 .corazon{
     cursor: pointer;
+    position: relative;
+    right: -40px;
+    font-size: 20px;
+    
 }
 
 .imagen{
@@ -33,6 +37,9 @@
     .contenedorDescrip{
         width: 60%;
     }
+    .corazon{
+        right: 0px;
+    }
 }
 
 @media screen and (max-width: 490px) {
@@ -42,28 +49,31 @@
 }
 
 .nombre{
-    color: red;
-    font-size: 1.3rem;
+    color: #009fff;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
 
 .descripcion{
     font-size: 1rem;
+    line-height: 25px;
 }
 
 .precioM, .precioA, .precioP, .precioW{
-    width: 500px;
+    width: 600px;
     margin: 0 auto;
     margin-top: 100px;
     background-color: white;
     border-radius: 10px;
-    border: 1px solid black;
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    color: red;
-    box-shadow: 0px 0px 8px rgba(0,0,0,.1);
+    box-shadow: 5px 5px 7px 1px rgba(0, 0, 0, 0.3);
+}
+.precioA .Mprecio{
+    flex: 2;
 }
 
 .Mtitulo, .Mprecio{
@@ -78,7 +88,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     height: 100px;
-    width: 100px;
 }
 .mediamarktImg{
     background-image: url(./../assets/img/pngwing.com.png);
@@ -86,7 +95,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     height: 100px;
-    width: 100px;
 }
 .phonehouseImg{
     background-image: url(./../assets/img/phonehouse.png);
@@ -94,7 +102,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     height: 100px;
-    width: 100px;
 }
 .wortenImg{
     background-image: url(./../assets/img/worten.png);
@@ -102,7 +109,6 @@
     background-repeat: no-repeat;
     background-size: contain;
     height: 100px;
-    width: 100px;
 }
 
 .Mprecio{
@@ -117,11 +123,7 @@
     cursor: pointer;
 }
 
-@media screen and (max-width: 490px) {
-    .Murl2{
-        display: none;
-    }
-}
+
 
 .Murl2{
     width: 120px;
@@ -168,7 +170,7 @@
 
 .productFlex{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 /* .like{
@@ -202,7 +204,17 @@
     .precioM, .precioA, .precioP, .precioW{
         width: 300px;
         height: 70px;
+        flex-direction: column;
+        height: auto;
     }
+    .amazonImg, .phonehouseImg, .wortenImg, .mediamarktImg{
+        width: 100px;
+    }
+    .Murl2{
+        margin: 0;
+    }
+    
+
 }
 
 @media screen and (max-width: 370px){

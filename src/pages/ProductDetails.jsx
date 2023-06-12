@@ -157,7 +157,7 @@ export function ProductDetails() {
           <a href={producto.urls.MediaMarkt}>Comprar</a>
         </div>
         <div className={styles.Murl2}>
-          <a href={mediamarkt}>Visitar tienda</a>
+          <a href={mediamarkt}>Visitar</a>
         </div>
       </div>
       <div className={styles.precioA}>
@@ -178,7 +178,7 @@ export function ProductDetails() {
           <a href={producto.urls.PhoneHouse}>Comprar</a>
         </div>
         <div className={styles.Murl2}>
-          <a href={phonehouse}>Visitar tienda</a>
+          <a href={phonehouse}>Visitar</a>
         </div>
       </div>
       <div className={styles.precioW}>
@@ -190,7 +190,7 @@ export function ProductDetails() {
           <a href={producto.urls.Worten}>Comprar</a>
         </div>
         <div className={styles.Murl2}>
-          <a href={worten}>Visitar tienda</a>
+          <a href={worten}>Visitar</a>
         </div>
       </div>
     </div>
