@@ -40,6 +40,7 @@ export function ComparadorGrid() {
         );
         const data = await response.json();
         setProductos(data);
+        setError('');
       } catch (error) {
         setProductos([]);
         setError('Ningún producto coincide con la búsqueda');
