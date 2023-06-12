@@ -50,13 +50,15 @@ export function App() {
               Logout
             </button>
           ) : (
-            <Link to="/login" className="navHome">
+            <React.Fragment>
+              <Link to="/login" className="navHome">
               Login
             </Link>
+            <Link to="/registro" className="navRegistro">
+              Registro
+            </Link>
+            </React.Fragment>
           )}
-          <Link to="/registro" className="navRegistro">
-            Registro
-          </Link>
         </div>
       </header>
       <Routes>
