@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-export function Login() {
+export function Login({ onLogin }) {
   const [usuario, setUsuario] = useState('');
   const [contraseña, setContraseña] = useState('');
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -16,29 +16,31 @@ export function Login() {
     };
     
     const puertoActual = window.location.port;
-    if(puertoActual === "8000"){
+    if (puertoActual === "8000") {
       axios.post('http://localhost:8000/api/login', formData)
-      .then(response => {
-        const token = response.data.access;
-        localStorage.setItem('token', token);
-        console.log('Inicio de sesión exitoso');
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    }else if(puertoActual === "8001"){
+        .then(response => {
+          const token = response.data.access;
+          localStorage.setItem('token', token);
+          console.log('Inicio de sesión exitoso');
+          onLogin();
+          navigate('/');
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    } else if (puertoActual === "8001") {
       axios.post('http://localhost:8001/api/login', formData)
-      .then(response => {
-        const token = response.data.access;
-        localStorage.setItem('token', token);
-        console.log('Inicio de sesión exitoso');
-        history('/');
-      })
-      .catch(error => {
-        console.error(error);
-      });
+        .then(response => {
+          const token = response.data.access;
+          localStorage.setItem('token', token);
+          console.log('Inicio de sesión exitoso');
+          onLogin();
+          navigate('/');
+        })
+        .catch(error => {
+          console.error(error);
+        });
     }
-    
   };
 
   return (
@@ -51,4 +53,4 @@ export function Login() {
       </form>
     </div>
   );
-}
+};

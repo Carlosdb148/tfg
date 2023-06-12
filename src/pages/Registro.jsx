@@ -31,6 +31,7 @@ export function Registro() {
         const token = response.data.access;
         localStorage.setItem('token', token);
         console.log('Inicio de sesión exitoso');
+        history('/');
       })
       .catch(error => {
         console.error(error);

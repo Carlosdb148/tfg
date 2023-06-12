@@ -12,6 +12,10 @@
     padding: 20px;
 }
 
+.corazon{
+    cursor: pointer;
+}
+
 .imagen{
     height: 175px;
     max-width: 100% !important;

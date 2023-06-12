@@ -143,7 +143,7 @@ export function ProductDetails() {
         <div className={styles.contenedorDescrip}>
           <div className={styles.productFlex}>
             <p className={styles.nombre}>{producto.nombre}</p>
-            <p><i id="follow" class="fa-solid fa-heart" style={{color : follow}} onClick={followProduct}></i></p>
+            <p className={styles.corazon}><i id="follow" class="fa-solid fa-heart" style={{color : follow}} onClick={followProduct}></i></p>
           </div>
           <p className={styles.descripcion}>{producto.descripcion}</p>
         </div>

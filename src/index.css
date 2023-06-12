@@ -160,6 +160,25 @@ code {
   color: white;
 }
 
+.navHome3{
+  margin-right: 50px;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: white;
+  background: none;
+  border: none;
+}
+
+.navHome6{
+  margin: 0 auto;
+  font-weight: 300;
+  font-size: 2rem;
+  text-decoration: none;
+  color: white;
+  background: none;
+  border: none;
+}
+
 
 .createProduct:hover{
   color: black !important;
@@ -187,6 +206,26 @@ code {
 }
 
 .navHome:not(:hover){
+  color: white !important;
+  transition: all .5s ease;
+}
+
+.navHome3:hover{
+  color: black !important;
+  transition: all .5s ease;
+}
+
+.navHome3:not(:hover){
+  color: white !important;
+  transition: all .5s ease;
+}
+
+.navHome6:hover{
+  color: black !important;
+  transition: all .5s ease;
+}
+
+.navHome6:not(:hover){
   color: white !important;
   transition: all .5s ease;
 }
@@ -501,7 +540,12 @@ a{
     margin-right: 30px;
     font-size: 1rem;
   }
-  
+
+  .navHome3{
+    margin-right: 30px;
+    font-size: 1rem;
+  }
+
   .navRegistro{
     margin-right: 30px;
     font-size: 1rem;
