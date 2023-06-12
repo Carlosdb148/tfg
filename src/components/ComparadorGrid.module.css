@@ -1,14 +1,12 @@
 .comparadorGrid{
     margin: 0 auto !important;
     width: 80%;
-    margin-top: 100px;
-    margin-bottom: 100px;
     display: grid;
     grid-template-columns: repeat(auto-fill, 280px);
     gap: 40px;
     justify-content: center;
-    margin-top: 100px !important;
     margin-bottom: 100px !important;
+    margin-top: -40px !important;
 }
 
 .filtroContainer {
@@ -21,9 +19,10 @@
   .filtro {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border:0;
     border-radius: 5px;
   }
+  
 
   .verMas{
     margin: 0 auto;
@@ -48,4 +47,13 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
+  }
+
+  .flexFilters{
+    display: flex;
+    justify-content: space-between;
+    width: 64%;
+    margin: 0 auto;
+    height: auto;
+    margin-top: 30px;
   }

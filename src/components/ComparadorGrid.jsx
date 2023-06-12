@@ -74,23 +74,24 @@ export function ComparadorGrid() {
         a precios más que lógicos
       </div>
       <div>
-        <div>
-          <Search />
+        <div className={styles.flexFilters}>
+          <div>
+            <Search />
+          </div>
+          <div className={styles.filtroContainer}>
+            <select
+              value={tipoFiltro}
+              onChange={handleFiltrarPorTipo}
+              className={styles.filtro}
+            >
+              <option value="">Todos</option>
+              <option value="mobile">Móvil</option>
+              <option value="computer">Ordenador</option>
+              <option value="tablet">Tablet</option>
+            </select>
+          </div>
         </div>
-        <div className="fraseProduct">Productos</div>
-
-        <div className={styles.filtroContainer}>
-          <select
-            value={tipoFiltro}
-            onChange={handleFiltrarPorTipo}
-            className={styles.filtro}
-          >
-            <option value="">Todos</option>
-            <option value="mobile">Móvil</option>
-            <option value="computer">Ordenador</option>
-            <option value="tablet">Tablet</option>
-          </select>
-        </div>
+        
         <div><p className="inicioMensaje">{error}</p></div>
         <ul className={styles.comparadorGrid}>
           {productos.slice(0, mostrarTodos ? productos.length : cantidadInicial).map((producto) => (
