@@ -11,8 +11,7 @@ export function ProductDetails() {
   const [mediamarkt, setMediamarkt] = useState("");
   const [phonehouse, setPhonehouse] = useState("");
   const [worten, setWorten] = useState("");
-  const [longitud, setLongitud] = useState("");
-  const [latitud, setLatitud] = useState("");
+  const [error, seterror] = useState("");
   const token = localStorage.getItem('token');
 
   useEffect(() => {
@@ -45,9 +44,9 @@ export function ProductDetails() {
         }
       });
 
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    }
+    // if (navigator.geolocation) {
+    //   navigator.geolocation.getCurrentPosition(showPosition);
+    // }
 
     function showPosition(position) {
     
@@ -120,6 +119,7 @@ export function ProductDetails() {
         },
       })
       .then((response) => {
+        seterror('');
         if(response.data.follow){
           console.log('pon');
           setFollow('blue');
@@ -127,11 +127,14 @@ export function ProductDetails() {
           console.log('quita');
           setFollow('gray');
         }
+      }).catch(error => {
+        seterror('Necesitas estar logueado para seguir un producto');
       });
   }
 
   return (
     <div>
+      <div><p className="inicioMensaje">{error}</p></div>
       <div className={styles.detailsContainer}>
         <div className={styles.contenedorImg}>
           <img
